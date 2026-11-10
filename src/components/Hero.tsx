@@ -1,7 +1,4 @@
-import { useEffect, useState } from 'react'
-
-const DESIGN_W = 1440
-const DESIGN_H = 1024
+import Stage from './Stage'
 
 const TABS = [
   { label: 'HOME', cls: 'tab--home', href: '#home' },
@@ -12,36 +9,9 @@ const TABS = [
 
 const LANGS = ['EN', 'UA', 'ES']
 
-/** Fits the 1440×1024 desktop composition into the window and centers it. */
-function useStageFit() {
-  const [fit, setFit] = useState({ scale: 1, left: 0, top: 0 })
-  useEffect(() => {
-    const update = () => {
-      const w = window.innerWidth
-      const h = window.innerHeight
-      const scale = Math.min(w / DESIGN_W, h / DESIGN_H)
-      setFit({
-        scale,
-        left: (w - DESIGN_W * scale) / 2,
-        top: (h - DESIGN_H * scale) / 2,
-      })
-    }
-    update()
-    window.addEventListener('resize', update)
-    return () => window.removeEventListener('resize', update)
-  }, [])
-  return fit
-}
-
 export default function Hero() {
-  const { scale, left, top } = useStageFit()
-
   return (
-    <main id="home" className="viewport">
-      <div
-        className="stage"
-        style={{ left, top, transform: `scale(${scale})` }}
-      >
+    <Stage id="home" height={1024}>
         <nav className="tabs" aria-label="Main">
           {TABS.map((t) => (
             <a key={t.label} className={`tab ${t.cls}`} href={t.href}>
@@ -111,7 +81,6 @@ export default function Hero() {
             <img key={i} src="/assets/spiral-ring.png" alt="" width={26} height={64} />
           ))}
         </div>
-      </div>
-    </main>
+    </Stage>
   )
 }

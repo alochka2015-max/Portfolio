@@ -20,10 +20,10 @@ html, body { background: var(--paper); color: var(--ink); font-family: var(--fon
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 
-.viewport { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+.stage-frame { position: relative; width: 100%; overflow: hidden; }
 .stage {
-  position: absolute;
-  width: 1440px; height: 1024px;
+  position: absolute; top: 0;
+  width: 1440px;
   transform-origin: top left;
 }
 
@@ -143,3 +143,84 @@ ul { list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   .btn, .tab { transition: none; }
 }
+
+/* ---- Section 2 — Intro (1440×860) ---- */
+.intro-back {
+  position: absolute; left: 711.41px; top: 425.65px;
+  width: 1172px; height: 720px;
+  background: var(--line); border: 1px solid var(--line); border-radius: 20px;
+  transform: translate(-50%, -50%) rotate(-1.2deg);
+}
+.sheet--intro { top: 70px; height: 720px; border-radius: 20px; }
+.sheet__margin--intro { height: 720px; }
+
+.hole { position: absolute; left: 19px; width: 18px; height: 18px; }
+
+.eyebrow {
+  position: absolute; left: 87px; top: 71px;
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 18px; background: var(--paper);
+  border: 1px solid var(--ink); border-radius: 999px;
+  font-weight: 700; font-size: 13px; white-space: nowrap;
+}
+.eyebrow__label { letter-spacing: 1.82px; }
+
+.statement {
+  position: absolute; left: 87px; top: 131px;
+  display: flex; flex-direction: column;
+  font-family: var(--font-display); font-weight: 400;
+  font-size: 108px; line-height: 0.88; letter-spacing: -1px; white-space: nowrap;
+}
+.statement em { font-style: normal; color: var(--accent-magenta); }
+
+.intro-text {
+  position: absolute; left: 87px; top: 357px;
+  display: flex; flex-direction: column; gap: 28px;
+}
+.intro-text > p { width: 440px; font-size: 19px; line-height: 1.6; color: var(--text-body); }
+.note { display: flex; align-items: center; gap: 12px; width: 426px; }
+.note img { width: 10px; height: 10px; flex-shrink: 0; }
+.note p { font-weight: 700; font-size: 15px; line-height: normal; white-space: nowrap; }
+
+.workbook {
+  position: absolute; left: 925.38px; top: 295px;
+  width: 300px; height: 380px; overflow: hidden;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: 0 14px 30px rgba(31, 20, 20, 0.14);
+  transform: translate(-50%, -50%) rotate(4deg);
+}
+.workbook__cover {
+  position: absolute; left: -1px; top: -1px; width: 300px; height: 150px;
+  background: var(--accent-orange);
+}
+.workbook__title {
+  position: absolute; left: 39px; top: 25px;
+  font-family: var(--font-display); font-size: 52px; line-height: 0.88; white-space: nowrap;
+}
+.workbook__vol {
+  position: absolute; left: 39px; top: 121px;
+  font-weight: 700; font-size: 11px; letter-spacing: 1.32px; white-space: nowrap;
+}
+.workbook__rule {
+  position: absolute; left: 39px; width: 220px; height: 1px; background: var(--line);
+}
+.workbook__word {
+  position: absolute; left: 39px;
+  font-weight: 500; font-size: 13px; color: var(--text-body); white-space: pre;
+}
+.workbook__word.is-accent { color: var(--accent-magenta); }
+.workbook__dot { position: absolute; left: 13px; width: 10px; height: 10px; }
+
+.sticky {
+  position: absolute; left: 734.2px; top: 534.21px;
+  width: 280px; padding: 22px 24px 24px;
+  display: flex; flex-direction: column; gap: 10px;
+  background: var(--accent-magenta); color: var(--paper);
+  border-radius: 4px; box-shadow: 0 14px 30px rgba(31, 20, 20, 0.14);
+  transform: translate(-50%, -50%) rotate(3deg);
+  font-weight: 700;
+}
+.sticky__label { font-size: 12px; letter-spacing: 1.68px; line-height: normal; white-space: nowrap; }
+.sticky__text { font-size: 17px; line-height: 1.5; }
+
+.pin { position: absolute; left: 725.2px; top: 435px; width: 18px; height: 18px; }
