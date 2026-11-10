@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const DESIGN_W = 1440
 const DESIGN_H = 1024
@@ -12,32 +12,35 @@ const TABS = [
 
 const LANGS = ['EN', 'UA', 'ES']
 
-/** Scales the 1440×1024 desktop composition to the available width. */
-function useStageScale() {
-  const [scale, setScale] = useState(1)
-  const ref = useRef<HTMLDivElement>(null)
+/** Fits the 1440×1024 desktop composition into the window and centers it. */
+function useStageFit() {
+  const [fit, setFit] = useState({ scale: 1, left: 0, top: 0 })
   useEffect(() => {
-    const update = () => setScale(Math.min(1, window.innerWidth / DESIGN_W))
+    const update = () => {
+      const w = window.innerWidth
+      const h = window.innerHeight
+      const scale = Math.min(w / DESIGN_W, h / DESIGN_H)
+      setFit({
+        scale,
+        left: (w - DESIGN_W * scale) / 2,
+        top: (h - DESIGN_H * scale) / 2,
+      })
+    }
     update()
     window.addEventListener('resize', update)
     return () => window.removeEventListener('resize', update)
   }, [])
-  return { scale, ref }
+  return fit
 }
 
 export default function Hero() {
-  const { scale, ref } = useStageScale()
+  const { scale, left, top } = useStageFit()
 
   return (
-    <main
-      id="home"
-      className="viewport"
-      style={{ height: DESIGN_H * scale }}
-    >
+    <main id="home" className="viewport">
       <div
-        ref={ref}
         className="stage"
-        style={{ transform: `scale(${scale})` }}
+        style={{ left, top, transform: `scale(${scale})` }}
       >
         <nav className="tabs" aria-label="Main">
           {TABS.map((t) => (
