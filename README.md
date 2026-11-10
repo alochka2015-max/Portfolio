@@ -16,5 +16,3 @@ Put into `public/assets/`:
 - `portrait.png` — layer "image 7" (679×679)
 - `badge-ellipse.png` — "Ellipse" inside the badge (112×112)
 - `spiral-ring.svg` — one "Spiral ring" (26×64)
-
-Plan: `docs/site-plan.html`.
