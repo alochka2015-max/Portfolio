@@ -14,8 +14,8 @@ type Group = { id: string; trigger: Target; jobs: Job[]; swirls: number }
 const AGENTS = [
   { name: 'UI', color: '#fda009', on: '#1f1615' },
   { name: 'Research', color: '#b520cc', on: '#ffffff' },
-  { name: 'Layout', color: '#e8608f', on: '#1f1615' },
-  { name: 'Copy', color: '#7a4a43', on: '#ffffff' },
+  { name: 'Layout', color: '#12a594', on: '#ffffff' },
+  { name: 'Copy', color: '#3b6cff', on: '#ffffff' },
   { name: 'Prototype', color: '#1f1615', on: '#ffffff' },
 ]
 
