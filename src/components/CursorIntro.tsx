@@ -20,9 +20,8 @@ const AGENTS = [
 ]
 
 const t = (sel: string, index?: number, also?: Target[]): Target => ({ sel, index, also })
-/** project card i together with its pin */
-const card = (i: number, extra: Target[] = []): Target =>
-  t('#projects .card', i, [t('#projects .pin', i), ...extra])
+/** project folder i (its pin is part of the folder) */
+const card = (i: number): Target => t('#projects .card', i)
 
 const GROUPS: Group[] = [
   {

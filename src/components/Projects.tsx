@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import Stage from './Stage'
 
 type Tone = 'magenta' | 'orange' | 'rose' | 'ink'
@@ -97,6 +98,10 @@ const PROJECTS: Project[] = [
   },
 ]
 
+/** glass folder tint and cover tilt for each project */
+const FOLDER_COLORS = ['#8f7ae0', '#fda009', '#e8608f', '#7a4a43', '#b520cc']
+const TILTS = [-2, 2.2, -1.6, 1.8, -2.2]
+
 const FILTERS = ['ALL · 5', 'WEB · 3', 'MOBILE · 2', 'UX RESEARCH · 1']
 
 const PIN_SRC = {
@@ -149,42 +154,46 @@ export default function Projects() {
           ))}
         </div>
 
-        {PROJECTS.map((p) => (
+        {PROJECTS.map((p, i) => (
           <article
             key={p.n}
-            className="card"
-            style={{
-              left: p.x,
-              top: p.y,
-              transform: `translate(-50%, -50%) rotate(${p.rotate}deg)`,
-            }}
+            className="card folder"
+            style={
+              {
+                left: p.x,
+                top: p.y,
+                transform: `translate(-50%, -50%) rotate(${p.rotate}deg)`,
+                '--fc': FOLDER_COLORS[i],
+                '--tilt': `${TILTS[i]}deg`,
+              } as CSSProperties
+            }
           >
+            <div className="folder__back" aria-hidden="true" />
+            <div className="folder__sheet folder__sheet--a" aria-hidden="true" />
+            <div className="folder__sheet folder__sheet--b" aria-hidden="true" />
             <img className="card__media" src={p.image} alt={p.alt} width={458} height={320} />
-            <div className="card__body">
-              <div className="card__meta">
-                <span className={`card__number tone-${p.numberTone}`}>{p.n}</span>
-                <span className="card__kind">{p.kind}</span>
-                <span className={`card__badge tone-${p.badgeTone}`}>{p.badge}</span>
+            <img
+              className="pin folder__pin"
+              src={PIN_SRC[p.pin.tone]}
+              alt=""
+              width={18}
+              height={18}
+            />
+            <div className="folder__front">
+              <div className="card__body">
+                <div className="card__meta">
+                  <span className={`card__number tone-${p.numberTone}`}>{p.n}</span>
+                  <span className="card__kind">{p.kind}</span>
+                  <span className={`card__badge tone-${p.badgeTone}`}>{p.badge}</span>
+                </div>
+                <h3 className="card__title">{p.title}</h3>
+                <p className="card__text">{p.text}</p>
+                <a className="card__link" href="#projects" onClick={(e) => e.preventDefault()}>
+                  View case →
+                </a>
               </div>
-              <h3 className="card__title">{p.title}</h3>
-              <p className="card__text">{p.text}</p>
-              <a className="card__link" href="#projects" onClick={(e) => e.preventDefault()}>
-                View case →
-              </a>
             </div>
           </article>
-        ))}
-
-        {PROJECTS.map((p) => (
-          <img
-            key={`pin-${p.n}`}
-            className="pin"
-            style={{ left: p.pin.x, top: p.pin.y }}
-            src={PIN_SRC[p.pin.tone]}
-            alt=""
-            width={18}
-            height={18}
-          />
         ))}
 
         <div className="sticky-note">
