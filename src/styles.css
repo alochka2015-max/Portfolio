@@ -233,7 +233,7 @@ ul { list-style: none; }
   transform: translate(-50%, -50%) rotate(0.8deg);
 }
 .sheet--projects { top: 70px; height: 2602px; border-radius: 20px; }
-.sheet__grid--partial { bottom: auto; height: 1500px; }
+.sheet__grid--partial { bottom: 0; height: auto; }
 .sheet__margin--projects { height: 2602px; }
 
 .projects-title {
