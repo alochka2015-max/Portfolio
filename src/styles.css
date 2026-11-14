@@ -158,6 +158,8 @@ ul { list-style: none; }
 /* tucked behind the sheet: only a sliver shows; the current page's tab is out, the rest slide out on hover */
 .tab { transform: translateX(-40px); }
 .tab:hover, .tab:focus-visible { transform: translateX(2px); }
+.tab:not(.is-current) { filter: saturate(.3) brightness(1.04); transition: transform .15s ease, filter .15s ease; }
+.tab:not(.is-current):hover, .tab:not(.is-current):focus-visible { filter: saturate(.65); }
 .tab.is-current { transform: translateX(12px); }
 .tab.is-current:hover { transform: translateX(16px); }
 .tab span {
