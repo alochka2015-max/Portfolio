@@ -19,8 +19,8 @@ export function useIsMobile() {
 
 const TABS = [
   { key: 'tab.home', href: '#home', cls: 'm-tab--home' },
-  { key: 'tab.projects', href: '#projects', cls: 'm-tab--projects' },
   { key: 'tab.about', href: '#intro', cls: 'm-tab--about' },
+  { key: 'tab.projects', href: '#projects', cls: 'm-tab--projects' },
   { key: 'tab.contact', href: '#contact', cls: 'm-tab--contact' },
 ]
 

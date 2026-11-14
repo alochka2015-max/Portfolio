@@ -2,8 +2,8 @@ import { useLang } from '../i18n'
 
 const TABS = [
   { key: 'tab.home', cls: 'tab--home', href: '#home', section: 'home' },
-  { key: 'tab.projects', cls: 'tab--projects', href: '#projects', section: 'projects' },
   { key: 'tab.about', cls: 'tab--about', href: '#intro', section: 'about' },
+  { key: 'tab.projects', cls: 'tab--projects', href: '#projects', section: 'projects' },
   { key: 'tab.contact', cls: 'tab--contact', href: '#contact', section: 'contact' },
 ]
 
