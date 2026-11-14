@@ -25,7 +25,8 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { background: var(--paper); color: var(--ink); font-family: var(--font-body); }
+html { background: var(--paper); }
+html, body { color: var(--ink); font-family: var(--font-body); }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 
@@ -142,12 +143,12 @@ ul { list-style: none; }
 .spiral img { width: 26px; height: 64px; display: block; flex-shrink: 0; }
 
 /* Side tabs: a fixed 1440px-wide layer scaled like the stages, so the tabs follow the scroll */
-.side-tabs { position: fixed; top: 0; width: 1440px; height: 0; z-index: 30; transform-origin: top left; pointer-events: none; }
+.side-tabs { position: fixed; top: 0; width: 1440px; height: 0; z-index: -1; transform-origin: top left; pointer-events: none; }
 .side-tabs .tab { pointer-events: auto; }
-.tab.is-current { transform: translateX(10px); }
-.tab.is-current:hover { transform: translateX(14px); }
+.tab.is-current { transform: translateX(14px); }
+.tab.is-current:hover { transform: translateX(18px); }
 .tabs {
-  position: absolute; left: 1262px; top: 170px;
+  position: absolute; left: 1244px; top: 170px;
   display: flex; flex-direction: column; gap: 8px;
 }
 .tab {
@@ -158,11 +159,10 @@ ul { list-style: none; }
 }
 .tab:hover { transform: translateX(6px); }
 .tab span {
-  position: absolute; left: 57px; top: 50%;
+  position: absolute; left: 68px; top: 50%;
   transform: translate(-50%, -50%) rotate(90deg); white-space: nowrap;
 }
-.tab--home { background: var(--accent-magenta); color: var(--paper); width: 124px; }
-.tab--home span { left: 71px; }
+.tab--home { background: var(--accent-magenta); color: var(--paper); }
 .tab--projects { background: var(--accent-orange); }
 .tab--about { background: var(--rose); }
 .tab--contact { background: var(--ink); color: var(--paper); }
