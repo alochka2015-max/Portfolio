@@ -45,11 +45,8 @@ export default function Contact() {
         </p>
 
         <div className="cv-buttons">
-          <a className="cv-btn cv-btn--primary" href="#contact" onClick={(e) => e.preventDefault()}>
+          <a className="cv-btn cv-btn--primary" href="/cv/Alla_Kulykova_UIUX_CV.pdf" download>
             Download CV · EN
-          </a>
-          <a className="cv-btn cv-btn--ghost" href="#contact" onClick={(e) => e.preventDefault()}>
-            CV · ES
           </a>
         </div>
 
