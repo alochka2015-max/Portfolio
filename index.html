@@ -1,7 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" translate="no">
   <head>
     <meta charset="UTF-8" />
+    <meta name="google" content="notranslate" />
+    <script>
+      // set the page language before first paint so browsers never auto-translate the site
+      try {
+        var l = localStorage.getItem('lang')
+        if (l) document.documentElement.lang = l === 'ua' ? 'uk' : l
+      } catch (e) {}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alla Kulykova — UX/UI Designer</title>
     <meta name="theme-color" content="#b08f84" />
