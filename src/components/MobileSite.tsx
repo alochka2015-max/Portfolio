@@ -69,12 +69,50 @@ function Eyebrow({ n, label }: { n: string; label: string }) {  // label is alre
   )
 }
 
+const NAV_FOR: Record<string, string> = { home: 'home', intro: 'intro', projects: 'projects', skills: 'intro', contact: 'contact' }
+
+/** Compact bar that stays on screen once the hero tabs have scrolled away. */
+function StickyNav() {
+  const { t } = useLang()
+  const [show, setShow] = useState(false)
+  const [active, setActive] = useState('home')
+  useEffect(() => {
+    const ids = ['home', 'intro', 'projects', 'skills', 'contact']
+    const on = () => {
+      setShow(window.scrollY > 160)
+      let cur = 'home'
+      for (const id of ids) {
+        const el = document.getElementById(id)
+        if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.4) cur = id
+      }
+      setActive(NAV_FOR[cur])
+    }
+    on()
+    window.addEventListener('scroll', on, { passive: true })
+    window.addEventListener('resize', on)
+    return () => {
+      window.removeEventListener('scroll', on)
+      window.removeEventListener('resize', on)
+    }
+  }, [])
+  return (
+    <nav className={`m-nav${show ? ' is-shown' : ''}`} aria-label="Sections" aria-hidden={!show}>
+      {TABS.map((tb) => (
+        <a key={tb.key} href={tb.href} tabIndex={show ? undefined : -1} className={`m-nav__a ${tb.cls.replace('m-tab--', 'm-nav--')}${NAV_FOR[tb.href.slice(1)] === active ? ' is-current' : ''}`}>
+          {t(tb.key)}
+        </a>
+      ))}
+    </nav>
+  )
+}
+
 export default function MobileSite() {
   const { lang, setLang, t } = useLang()
   const inner = useRef<HTMLDivElement>(null)
   const [scale, setScale] = useState(() => window.innerWidth / W)
   const [h, setH] = useState(0)
   const [flt, setFlt] = useState(0)
+  const cards = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const on = () => setScale(window.innerWidth / W)
@@ -93,6 +131,7 @@ export default function MobileSite() {
 
   return (
     <main className="m-root" style={{ height: h * scale }}>
+      <StickyNav />
       <div ref={inner} className="m-inner" style={{ transform: `scale(${scale})` }}>
         {/* ---------- Hero ---------- */}
         <section id="home" className="m-sec m-hero">
@@ -172,11 +211,11 @@ export default function MobileSite() {
               <div className="m-projects__body">
                 <p className="m-text m-projects__lead">{t('proj.leadM')}</p>
                 <div className="m-filters">
-                  {FILTERS.map((f, i) => <button key={f} type="button" aria-pressed={i === flt} className={i === flt ? 'is-on' : ''} onClick={() => setFlt(i)}>{t(f)}</button>)}
+                  {FILTERS.map((f, i) => <button key={f} type="button" aria-pressed={i === flt} className={i === flt ? 'is-on' : ''} onClick={() => { setFlt(i); cards.current?.scrollTo({ left: 0 }) }}>{t(f)}</button>)}
                 </div>
               </div>
             </div>
-            <div className="m-cards">
+            <div className="m-cards" ref={cards}>
               {PROJECTS.map((p, i) => matchesFilter(flt, p) && (
                 <article
                   key={p.n}
