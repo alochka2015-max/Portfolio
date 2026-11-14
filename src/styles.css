@@ -37,9 +37,6 @@ ul { list-style: none; }
   transform-origin: top left;
 }
 
-/* let clicks reach the tabs that sit behind the stages; the content itself stays clickable */
-body, #root, main:not(.m-root), .stage-frame, .stage { pointer-events: none; }
-.m-root, .replay { pointer-events: auto; }
 .stage > * { pointer-events: auto; }
 
 /* Notebook sheet */
@@ -147,9 +144,7 @@ body, #root, main:not(.m-root), .stage-frame, .stage { pointer-events: none; }
 }
 .spiral img { width: 26px; height: 64px; display: block; flex-shrink: 0; }
 
-/* Side tabs: a fixed 1440px-wide layer scaled like the stages, so the tabs follow the scroll */
-.side-tabs { position: fixed; top: 0; width: 1440px; height: 0; z-index: -1; transform-origin: top left; pointer-events: none; }
-.side-tabs .tab { pointer-events: auto; }
+/* Index tabs: one set per page, tucked behind its sheet */
 .tab.is-current { transform: translateX(14px); }
 .tab.is-current:hover { transform: translateX(18px); }
 .tabs {

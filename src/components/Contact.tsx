@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import PageTabs from './PageTabs'
 import Stage from './Stage'
 import { Lines, useLang } from '../i18n'
 
@@ -68,6 +69,7 @@ export default function Contact() {
   const { t } = useLang()
   return (
     <Stage id="contact" height={1000}>
+      <PageTabs current="contact" />
       <div className="contact-back" aria-hidden="true" />
 
       <div className="sheet sheet--contact">

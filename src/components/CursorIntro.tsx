@@ -33,7 +33,7 @@ const GROUPS: Group[] = [
       { agent: 1, delay: 150, targets: [t('#home .role-pill'), t('#home .facts')] },
       { agent: 2, delay: 300, targets: [t('#home .portrait')] },
       { agent: 3, delay: 450, targets: [t('#home .intro > p'), t('#home .lang')] },
-      { agent: 4, delay: 600, targets: [t('#home .buttons'), t('.side-tabs .tabs')] },
+      { agent: 4, delay: 600, targets: [t('#home .buttons'), t('#home .tabs')] },
     ],
   },
   {

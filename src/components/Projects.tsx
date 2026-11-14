@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import PageTabs from './PageTabs'
 import Stage from './Stage'
 import { useLang } from '../i18n'
 
@@ -120,6 +121,7 @@ export default function Projects() {
   const { t } = useLang()
   return (
     <Stage id="projects" height={2742}>
+      <PageTabs current="projects" tops={[140, 940, 1740]} />
       <div className="projects-back" aria-hidden="true" />
 
       <div className="sheet sheet--projects">

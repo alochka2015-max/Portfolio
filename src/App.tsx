@@ -4,7 +4,6 @@ import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Contact from './components/Contact'
 import CursorIntro from './components/CursorIntro'
-import SideTabs from './components/SideTabs'
 import MobileSite, { useIsMobile } from './components/MobileSite'
 
 export default function App() {
@@ -12,7 +11,6 @@ export default function App() {
   if (mobile) return <MobileSite />
   return (
     <main>
-      <SideTabs />
       <Hero />
       <Intro />
       <Projects />

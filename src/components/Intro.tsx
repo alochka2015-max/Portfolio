@@ -1,4 +1,5 @@
 import Stage from './Stage'
+import PageTabs from './PageTabs'
 import { Lines, useLang } from '../i18n'
 
 const WORDS = [
@@ -12,6 +13,7 @@ export default function Intro() {
   const { t } = useLang()
   return (
     <Stage id="intro" height={860}>
+      <PageTabs current="about" />
       <div className="intro-back" aria-hidden="true" />
 
       <div className="sheet sheet--intro">

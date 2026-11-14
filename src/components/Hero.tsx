@@ -1,10 +1,12 @@
 import Stage from './Stage'
+import PageTabs from './PageTabs'
 import { LANGS, Lines, useLang } from '../i18n'
 
 export default function Hero() {
   const { lang, setLang, t } = useLang()
   return (
     <Stage id="home" height={1024}>
+        <PageTabs current="home" tops={[170]} />
         <div className="sheet-back" aria-hidden="true" />
 
         <section className="sheet">

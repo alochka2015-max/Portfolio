@@ -1,4 +1,5 @@
 import Stage from './Stage'
+import PageTabs from './PageTabs'
 import { useLang } from '../i18n'
 
 const SKILLS = [
@@ -15,6 +16,7 @@ export default function Skills() {
   const { t } = useLang()
   return (
     <Stage id="skills" height={990}>
+      <PageTabs current="about" />
       <div className="skills-back" aria-hidden="true" />
 
       <div className="sheet sheet--skills">
