@@ -36,6 +36,7 @@ const PROJECTS: Project[] = [
   { n: '04', kind: 'Website', badge: 'STUDY PROJECT', numberTone: 'ink', badgeTone: 'orange', title: 'AURUM', text: 'A premium website and brand identity for a dental implant clinic — a clear page structure and a calm, trustworthy visual system.', image: '/assets/project-4.png', alt: 'Aurum dental clinic website', pin: 'ink' },
   { n: '05', kind: 'Mobile app', badge: 'UX RESEARCH + UI', numberTone: 'magenta', badgeTone: 'rose', title: 'BOOK MOOD', text: 'A social reading app with book clubs, shared deadlines and gentle motivation — from persona and competitor analysis to user flow and UI.', image: '/assets/project-5.png', alt: 'Book Mood reading app screens', pin: 'magenta' },
 ]
+const BEHANCE = 'https://www.behance.net/alla-kulykova'
 const FOLDER_COLORS = ['#8f7ae0', '#fda009', '#e8608f', '#7a4a43', '#b520cc']
 const TILTS = [-2, 2.2, -1.6, 1.8, -2.2]
 const CARD_ROT = [1.2, -1, 1, -1.2, 1]
@@ -184,13 +185,13 @@ export default function MobileSite() {
                       </div>
                       <h3 className="card__title">{p.title}</h3>
                       <p className="card__text">{p.text}</p>
-                      <a className="card__link" href="#projects">View case →</a>
+                      <a className="card__link" href={BEHANCE} target="_blank" rel="noreferrer">View case →</a>
                     </div>
                   </div>
                 </article>
               ))}
             </div>
-            <a className="m-btn m-btn--ghost m-all" href="#projects">ALL PROJECTS →</a>
+            <a className="m-btn m-btn--ghost m-all" href={BEHANCE} target="_blank" rel="noreferrer">ALL PROJECTS →</a>
           </div>
         </section>
 

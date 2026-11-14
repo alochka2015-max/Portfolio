@@ -13,6 +13,8 @@ type Project = {
   text: string
   image: string
   alt: string
+  /** Behance case link; falls back to the profile */
+  href?: string
   /** card center inside the sheet and its tilt, from the Figma frame */
   x: number
   y: number
@@ -104,6 +106,9 @@ const TILTS = [-2, 2.2, -1.6, 1.8, -2.2]
 
 const FILTERS = ['ALL · 5', 'WEB · 3', 'MOBILE · 2', 'UX RESEARCH · 1']
 
+/** until each case has its own Behance link, cards open the Behance profile */
+const BEHANCE = 'https://www.behance.net/alla-kulykova'
+
 const PIN_SRC = {
   magenta: '/assets/pin-magenta.png',
   orange: '/assets/pin-orange.png',
@@ -188,7 +193,7 @@ export default function Projects() {
                 </div>
                 <h3 className="card__title">{p.title}</h3>
                 <p className="card__text">{p.text}</p>
-                <a className="card__link" href="#projects" onClick={(e) => e.preventDefault()}>
+                <a className="card__link" href={p.href ?? BEHANCE} target="_blank" rel="noreferrer">
                   View case →
                 </a>
               </div>
@@ -209,7 +214,7 @@ export default function Projects() {
           height={18}
         />
 
-        <a className="all-projects" href="#projects" onClick={(e) => e.preventDefault()}>
+        <a className="all-projects" href={BEHANCE} target="_blank" rel="noreferrer">
           ALL PROJECTS →
         </a>
       </div>
