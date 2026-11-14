@@ -1,4 +1,5 @@
-import type { CSSProperties } from 'react'
+import { useState, type CSSProperties } from 'react'
+import { matchesFilter } from '../filters'
 import PageTabs from './PageTabs'
 import Stage from './Stage'
 import { useLang } from '../i18n'
@@ -119,6 +120,7 @@ const PIN_SRC = {
 
 export default function Projects() {
   const { t } = useLang()
+  const [flt, setFlt] = useState(0)
   return (
     <Stage id="projects" height={2742}>
       <PageTabs current="projects" tops={[140]} />
@@ -152,18 +154,25 @@ export default function Projects() {
 
         <p className="projects-lead">{t('proj.lead')}</p>
 
-        <div className="filters" aria-hidden="true">
+        <div className="filters" role="group" aria-label="Filter projects">
           {FILTERS.map((f, i) => (
-            <span key={f} className={`filter${i === 0 ? ' is-active' : ''}`}>
+            <button
+              key={f}
+              type="button"
+              className={`filter${i === flt ? ' is-active' : ''}`}
+              aria-pressed={i === flt}
+              onClick={() => setFlt(i)}
+            >
               {t(f)}
-            </span>
+            </button>
           ))}
         </div>
 
         {PROJECTS.map((p, i) => (
           <article
             key={p.n}
-            className="card folder"
+            className={`card folder${matchesFilter(flt, p) ? '' : ' is-dim'}`}
+            aria-hidden={matchesFilter(flt, p) ? undefined : true}
             style={
               {
                 left: p.x,

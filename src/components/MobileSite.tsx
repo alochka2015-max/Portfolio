@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react'
+import { matchesFilter } from '../filters'
 import { Postcard } from './Contact'
 import { LANGS, Lines, useLang } from '../i18n'
 
@@ -73,6 +74,7 @@ export default function MobileSite() {
   const inner = useRef<HTMLDivElement>(null)
   const [scale, setScale] = useState(() => window.innerWidth / W)
   const [h, setH] = useState(0)
+  const [flt, setFlt] = useState(0)
 
   useEffect(() => {
     const on = () => setScale(window.innerWidth / W)
@@ -170,12 +172,12 @@ export default function MobileSite() {
               <div className="m-projects__body">
                 <p className="m-text m-projects__lead">{t('proj.leadM')}</p>
                 <div className="m-filters">
-                  {FILTERS.map((f, i) => <span key={f} className={i === 0 ? 'is-on' : ''}>{t(f)}</span>)}
+                  {FILTERS.map((f, i) => <button key={f} type="button" aria-pressed={i === flt} className={i === flt ? 'is-on' : ''} onClick={() => setFlt(i)}>{t(f)}</button>)}
                 </div>
               </div>
             </div>
             <div className="m-cards">
-              {PROJECTS.map((p, i) => (
+              {PROJECTS.map((p, i) => matchesFilter(flt, p) && (
                 <article
                   key={p.n}
                   className="folder m-card"

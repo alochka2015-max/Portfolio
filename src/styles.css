@@ -287,7 +287,12 @@ ul { list-style: none; }
   background: var(--paper); border: 1px solid var(--ink); border-radius: 999px;
   font-weight: 700; font-size: 13px; letter-spacing: 1.04px; white-space: nowrap;
 }
-.filter.is-active { background: var(--ink); color: var(--paper); border: 0; }
+.filter { font-family: inherit; color: var(--ink); cursor: pointer; transition: background .15s ease, color .15s ease; }
+.filter:hover { background: var(--blush); }
+.filter.is-active, .filter.is-active:hover { background: var(--ink); color: var(--paper); border: 0; }
+.filter:focus-visible { outline: 2px solid var(--accent-magenta); outline-offset: 3px; }
+.card.is-dim { opacity: .22; pointer-events: none; }
+.card { transition: opacity .3s ease; }
 
 .card {
   position: absolute; width: 490px;
