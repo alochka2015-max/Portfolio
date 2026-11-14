@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { matchesFilter } from '../filters'
+import { CASE_URL } from '../cases'
 import PageTabs from './PageTabs'
 import Stage from './Stage'
 import { useLang } from '../i18n'
@@ -47,10 +48,10 @@ const PROJECTS: Project[] = [
     badge: 'badge.study',
     numberTone: 'orange',
     badgeTone: 'orange',
-    title: 'MATHUR GASTROBAR',
+    title: 'MADHUR GASTROBAR',
     text: 'p2.text',
     image: '/assets/project-2.png',
-    alt: 'Mathur Gastrobar website',
+    alt: 'Madhur Gastrobar website',
     x: 882.94,
     y: 719.68,
     rotate: -1,
@@ -228,7 +229,7 @@ export default function Projects() {
                 </div>
                 <h3 className="card__title">{p.title}</h3>
                 <p className="card__text">{t(p.text)}</p>
-                <a className="card__link" href={p.href ?? BEHANCE} target="_blank" rel="noreferrer">
+                <a className="card__link" href={CASE_URL[p.n] ?? p.href ?? BEHANCE} target="_blank" rel="noreferrer">
                   {t('proj.viewCase')}
                 </a>
               </div>
