@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from 'react'
+import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { matchesFilter } from '../filters'
 import PageTabs from './PageTabs'
 import Stage from './Stage'
@@ -118,19 +118,42 @@ const PIN_SRC = {
   ink: '/assets/pin.png',
 }
 
+/** Visible cards are packed into the first slots of the zig-zag, so a filter brings its folders to the top. */
+const STICKY_OFFSET = -96.7 // sticky note top relative to its row's card centre
+const SHEET_BELOW_LAST_ROW = 502.27 // sheet bottom below the last row's card centre
+
 export default function Projects() {
   const { t } = useLang()
   const [flt, setFlt] = useState(0)
+
+  // The cursor intro reveals cards by their position in the full list. Once a filter
+  // rearranges them, show everything straight away so nothing stays hidden.
+  const firstRun = useRef(true)
+  useEffect(() => {
+    if (firstRun.current) {
+      firstRun.current = false
+      return
+    }
+    document.querySelectorAll('#projects .rv').forEach((el) => el.classList.add('rv-in'))
+  }, [flt])
+
+  const shown = PROJECTS.filter((p) => matchesFilter(flt, p))
+  const stickySlot = shown.length
+  const rows = Math.ceil((stickySlot + 1) / 2)
+  const sheetH = PROJECTS[(rows - 1) * 2].y + SHEET_BELOW_LAST_ROW
+  const stickyRight = stickySlot % 2 === 1
+  const stickyRowY = PROJECTS[Math.floor(stickySlot / 2) * 2].y + STICKY_OFFSET
+
   return (
-    <Stage id="projects" height={2742}>
+    <Stage id="projects" height={Math.round(sheetH + 140)}>
       <PageTabs current="projects" tops={[140]} />
-      <div className="projects-back" aria-hidden="true" />
+      <div className="projects-back" aria-hidden="true" style={{ height: sheetH, top: 70 + sheetH / 2 + 14.05 }} />
 
-      <div className="sheet sheet--projects">
+      <div className="sheet sheet--projects" style={{ height: sheetH }}>
         <div className="sheet__grid sheet__grid--partial" aria-hidden="true" />
-        <div className="sheet__margin sheet__margin--projects" aria-hidden="true" />
+        <div className="sheet__margin sheet__margin--projects" aria-hidden="true" style={{ height: sheetH }} />
 
-        {[159, 459, 759, 1059, 1359].map((top) => (
+        {[159, 459, 759, 1059, 1359].filter((top) => top < sheetH - 700).map((top) => (
           <img
             key={top}
             className="hole"
@@ -168,16 +191,18 @@ export default function Projects() {
           ))}
         </div>
 
-        {PROJECTS.map((p, i) => (
+        {shown.map((p, slot) => {
+          const i = PROJECTS.indexOf(p)
+          const pos = PROJECTS[slot]
+          return (
           <article
             key={p.n}
-            className={`card folder${matchesFilter(flt, p) ? '' : ' is-dim'}`}
-            aria-hidden={matchesFilter(flt, p) ? undefined : true}
+            className="card folder"
             style={
               {
-                left: p.x,
-                top: p.y,
-                transform: `translate(-50%, -50%) rotate(${p.rotate}deg)`,
+                left: pos.x,
+                top: pos.y,
+                transform: `translate(-50%, -50%) rotate(${pos.rotate}deg)`,
                 '--fc': FOLDER_COLORS[i],
                 '--tilt': `${TILTS[i]}deg`,
               } as CSSProperties
@@ -209,22 +234,23 @@ export default function Projects() {
               </div>
             </div>
           </article>
-        ))}
+          )
+        })}
 
-        <div className="sticky-note">
+        <div className="sticky-note" style={{ left: stickyRight ? 853.61 : 120, top: stickyRowY }}>
           <p className="sticky-note__label">{t('proj.stickyLabel')}</p>
           <p className="sticky-note__text">{t('proj.stickyText')}</p>
         </div>
         <img
           className="pin"
-          style={{ left: 844.61, top: 1899.3 }}
+          style={{ left: stickyRight ? 844.61 : 111, top: stickyRowY - 103.7 }}
           src="/assets/pin.png"
           alt=""
           width={18}
           height={18}
         />
 
-        <a className="all-projects" href={BEHANCE} target="_blank" rel="noreferrer">
+        <a className="all-projects" style={{ top: sheetH - 130 }} href={BEHANCE} target="_blank" rel="noreferrer">
           {t('proj.all')}
         </a>
       </div>

@@ -291,8 +291,8 @@ ul { list-style: none; }
 .filter:hover { background: var(--blush); }
 .filter.is-active, .filter.is-active:hover { background: var(--ink); color: var(--paper); border: 0; }
 .filter:focus-visible { outline: 2px solid var(--accent-magenta); outline-offset: 3px; }
-.card.is-dim { opacity: .22; pointer-events: none; }
-.card { transition: opacity .3s ease; }
+.card { transition: left .4s ease, top .4s ease; }
+.sticky-note, .all-projects { transition: left .4s ease, top .4s ease; }
 
 .card {
   position: absolute; width: 490px;
