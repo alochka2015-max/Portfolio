@@ -109,10 +109,11 @@ export default function MobileSite() {
               ))}
             </p>
             <div className="m-pill-wrap"><span className="m-pill-tag">{t('hero.role')}</span></div>
-            <h1 className="m-name">ALLA<br />KULYKOVA</h1>
+            <h1 className="m-name">{t('name.1')}<br />{t('name.2')}</h1>
             <div className="m-photo"><img src="/assets/portrait.png" alt="Alla Kulykova" /></div>
             <div className="m-badge"><i /><p><Lines text={t('hero.badge')} /></p></div>
-            <p className="m-lead">{t('hero.lead')}</p>
+            <div className="m-flow">
+              <p className="m-lead">{t('hero.lead')}</p>
             <div className="m-buttons">
               <a className="m-btn m-btn--primary" href="mailto:alochka2015@gmail.com">{t('hero.email')}</a>
               <a className="m-btn m-btn--ghost" href="#projects">{t('hero.projects')}</a>
@@ -120,6 +121,7 @@ export default function MobileSite() {
             <div className="m-facts">
               <div><p>{t('hero.basedIn')}</p><b>{t('hero.spain')}</b></div>
               <div><p>{t('hero.languages')}</p><b>EN · UA · ES</b></div>
+            </div>
             </div>
           </div>
         </section>
@@ -165,9 +167,11 @@ export default function MobileSite() {
               <Eyebrow n="03" label={t('proj.eyebrow')} />
               <h2 className="m-h2 m-projects__title" style={{ fontSize: 72, lineHeight: 0.9 }}><Lines text={t('proj.titleM')} /></h2>
               <span className="m-count">(5)</span>
-              <p className="m-text m-projects__lead">{t('proj.leadM')}</p>
-              <div className="m-filters">
-                {FILTERS.map((f, i) => <span key={f} className={i === 0 ? 'is-on' : ''}>{t(f)}</span>)}
+              <div className="m-projects__body">
+                <p className="m-text m-projects__lead">{t('proj.leadM')}</p>
+                <div className="m-filters">
+                  {FILTERS.map((f, i) => <span key={f} className={i === 0 ? 'is-on' : ''}>{t(f)}</span>)}
+                </div>
               </div>
             </div>
             <div className="m-cards">
@@ -256,7 +260,7 @@ export default function MobileSite() {
             <a href="https://www.behance.net/alla-kulykova" target="_blank" rel="noreferrer">Behance</a>
             <a href="mailto:alochka2015@gmail.com">Email</a>
           </nav>
-          <div><p>© 2026 Alla Kulykova</p><a href="#home">{t('footer.top')}</a></div>
+          <div><p>{t('footer.copy')}</p><a href="#home">{t('footer.top')}</a></div>
         </footer>
       </div>
     </main>

@@ -15,6 +15,9 @@ const D: Record<string, [string, string, string]> = {
   'tab.projects': ['PROJECTS', 'ПРОЄКТИ', 'PROYECTOS'],
   'tab.about': ['ABOUT', 'ПРО МЕНЕ', 'SOBRE MÍ'],
   'tab.contact': ['CONTACT', 'КОНТАКТИ', 'CONTACTO'],
+  'name.1': ['ALLA', 'АЛЛА', 'ALLA'],
+  'name.2': ['KULYKOVA', 'КУЛИКОВА', 'KULYKOVA'],
+  'footer.copy': ['© 2026 Alla Kulykova', '© 2026 Алла Куликова', '© 2026 Alla Kulykova'],
   'hero.role': ['UX/UI DESIGNER', 'UX/UI ДИЗАЙНЕРКА', 'DISEÑADORA UX/UI'],
   'hero.lead': [
     'I design user-friendly and visually distinctive interfaces for businesses and product teams — easy to use and easy to recognise.',
@@ -148,7 +151,7 @@ const D: Record<string, [string, string, string]> = {
   ],
   'contact.cvEn': ['Download CV · EN', 'Завантажити CV · EN', 'Descargar CV · EN'],
   'contact.cvEs': ['CV · ES', 'CV · ES', 'CV · ES'],
-  'card.to': ['TO: ALLA KULYKOVA', 'ДО: ALLA KULYKOVA', 'PARA: ALLA KULYKOVA'],
+  'card.to': ['TO: ALLA KULYKOVA', 'ДО: АЛЛА КУЛИКОВА', 'PARA: ALLA KULYKOVA'],
   'card.hello': ['SAY HELLO', 'ПРИВІТ', 'SALUDA'],
   'card.postmark': ['SPAIN\n2026', 'ІСПАНІЯ\n2026', 'ESPAÑA\n2026'],
   'footer.top': ['Back to top ↑', 'Нагору ↑', 'Volver arriba ↑'],

@@ -37,7 +37,7 @@ export default function Hero() {
           </ul>
 
           <span className="role-pill">{t('hero.role')}</span>
-          <h1 className="name">ALLA KULYKOVA</h1>
+          <h1 className="name">{t('name.1')} {t('name.2')}</h1>
 
           <img
             className="portrait"

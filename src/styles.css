@@ -601,3 +601,4 @@ main { position: relative; }
 
 /* Cyrillic display text runs wider than Bebas Neue */
 html[lang='uk'] .contact-title { font-size: 96px; }
+html[lang='uk'] .name { font-size: 170px; top: 185px; }

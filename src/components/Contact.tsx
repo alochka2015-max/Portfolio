@@ -117,7 +117,7 @@ export default function Contact() {
       </div>
 
       <footer className="site-footer">
-        <p>© 2026 Alla Kulykova</p>
+        <p>{t('footer.copy')}</p>
         <nav aria-label="Social links">
           <a href="https://www.linkedin.com/in/alla-kulykova-designer/" target="_blank" rel="noreferrer">LinkedIn</a>
           <a href="https://www.behance.net/alla-kulykova" target="_blank" rel="noreferrer">Behance</a>
