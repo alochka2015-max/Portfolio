@@ -35,7 +35,7 @@ type Project = {
 }
 const PROJECTS: Project[] = [
   { n: '01', kind: 'kind.app', badge: 'badge.concept', numberTone: 'magenta', badgeTone: 'magenta', title: 'NEVER LOSE YOUR RECEIPT', text: 'p1.text', image: '/assets/project-1.png', alt: 'Never Lose Your Receipt app screens', pin: 'magenta' },
-  { n: '02', kind: 'kind.web', badge: 'badge.study', numberTone: 'orange', badgeTone: 'orange', title: 'MADHUR GASTROBAR', text: 'p2.text', image: '/assets/project-2.png', alt: 'Madhur Gastrobar website', pin: 'orange' },
+  { n: '02', kind: 'kind.web', badge: 'badge.study', numberTone: 'orange', badgeTone: 'orange', title: 'MATHUR GASTROBAR', text: 'p2.text', image: '/assets/project-2.png', alt: 'Mathur Gastrobar website', pin: 'orange' },
   { n: '03', kind: 'kind.web', badge: 'badge.study', numberTone: 'rose', badgeTone: 'orange', title: 'OLGA', text: 'p3.text', image: '/assets/project-3.png', alt: 'Olga website', pin: 'ink' },
   { n: '04', kind: 'kind.web', badge: 'badge.study', numberTone: 'ink', badgeTone: 'orange', title: 'AURUM', text: 'p4.text', image: '/assets/project-4.png', alt: 'Aurum dental clinic website', pin: 'ink' },
   { n: '05', kind: 'kind.app', badge: 'badge.research', numberTone: 'magenta', badgeTone: 'rose', title: 'BOOK MOOD', text: 'p5.text', image: '/assets/project-5.png', alt: 'Book Mood reading app screens', pin: 'magenta' },
