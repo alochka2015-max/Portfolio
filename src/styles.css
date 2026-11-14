@@ -1,3 +1,10 @@
+/* Bebas Neue has no Cyrillic: a condensed stand-in (Oswald), sized to Bebas' cap height */
+@font-face {
+  font-family: 'Display Cyr'; font-weight: 400; font-style: normal; font-display: swap;
+  src: url('./fonts/oswald-cyrillic-600-normal.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  size-adjust: 84%;
+}
 :root {
   --blush: #f4e7e4;
   --paper-back: #fbf6f4;
@@ -13,7 +20,7 @@
   --text-body: #3d302e;
   --text-muted: #9b8b88;
   --badge: #eb5200;
-  --font-display: 'Bebas Neue', Impact, sans-serif;
+  --font-display: 'Bebas Neue', 'Display Cyr', Impact, sans-serif;
   --font-body: 'Manrope', system-ui, sans-serif;
 }
 
@@ -61,7 +68,21 @@ ul { list-style: none; }
   display: flex; gap: 12px;
   font-weight: 700; font-size: 13px; color: var(--text-muted);
 }
+.lang { list-style: none; }
+.lang button { all: unset; cursor: pointer; font: inherit; color: inherit; letter-spacing: inherit; }
+.lang button:hover { color: var(--ink); }
+.lang button:focus-visible { outline: 2px solid var(--accent-magenta); outline-offset: 3px; border-radius: 4px; }
 .lang .is-active { color: var(--ink); }
+
+.badge {
+  display: grid; place-items: center; border-radius: 50%;
+  background: var(--badge); transform: rotate(-10deg);
+}
+.badge i { position: absolute; inset: 12px; border-radius: 50%; border: 1.5px dashed var(--ink); }
+.badge p {
+  position: relative; margin: 0; text-align: center; color: #fff;
+  font: 700 15px/1.3 var(--font-body); white-space: nowrap;
+}
 
 .role-pill {
   position: absolute; left: 492px; top: 93px;
@@ -577,3 +598,6 @@ main { position: relative; }
 .site-footer nav { display: flex; gap: 28px; }
 .site-footer a { color: var(--ink); font-weight: 700; text-decoration: none; }
 .site-footer a:hover { color: var(--accent-magenta); }
+
+/* Cyrillic display text runs wider than Bebas Neue */
+html[lang='uk'] .contact-title { font-size: 96px; }

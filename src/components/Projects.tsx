@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 import Stage from './Stage'
+import { useLang } from '../i18n'
 
 type Tone = 'magenta' | 'orange' | 'rose' | 'ink'
 
@@ -25,12 +26,12 @@ type Project = {
 const PROJECTS: Project[] = [
   {
     n: '01',
-    kind: 'Mobile app',
-    badge: 'CONCEPT',
+    kind: 'kind.app',
+    badge: 'badge.concept',
     numberTone: 'magenta',
     badgeTone: 'magenta',
     title: 'NEVER LOSE YOUR RECEIPT',
-    text: 'A mobile assistant that keeps receipts in one place, tracks return and warranty terms, and reminds you before they expire.',
+    text: 'p1.text',
     image: '/assets/project-1.png',
     alt: 'Never Lose Your Receipt app screens',
     x: 325.74,
@@ -40,12 +41,12 @@ const PROJECTS: Project[] = [
   },
   {
     n: '02',
-    kind: 'Website',
-    badge: 'STUDY PROJECT',
+    kind: 'kind.web',
+    badge: 'badge.study',
     numberTone: 'orange',
     badgeTone: 'orange',
     title: 'MATHUR GASTROBAR',
-    text: 'A gastrobar website with expressive visual storytelling — typography, page composition and a strong visual hierarchy.',
+    text: 'p2.text',
     image: '/assets/project-2.png',
     alt: 'Mathur Gastrobar website',
     x: 882.94,
@@ -55,12 +56,12 @@ const PROJECTS: Project[] = [
   },
   {
     n: '03',
-    kind: 'Website',
-    badge: 'STUDY PROJECT',
+    kind: 'kind.web',
+    badge: 'badge.study',
     numberTone: 'rose',
     badgeTone: 'orange',
     title: 'OLGA',
-    text: 'A website built on one visual concept across every page, with a consistent UI system and adaptive layouts.',
+    text: 'p3.text',
     image: '/assets/project-3.png',
     alt: 'Olga website',
     x: 336.94,
@@ -70,12 +71,12 @@ const PROJECTS: Project[] = [
   },
   {
     n: '04',
-    kind: 'Website',
-    badge: 'STUDY PROJECT',
+    kind: 'kind.web',
+    badge: 'badge.study',
     numberTone: 'ink',
     badgeTone: 'orange',
     title: 'AURUM',
-    text: 'A premium website and brand identity for a dental implant clinic — a clear page structure and a calm, trustworthy visual system.',
+    text: 'p4.text',
     image: '/assets/project-4.png',
     alt: 'Aurum dental clinic website',
     x: 872.22,
@@ -85,12 +86,12 @@ const PROJECTS: Project[] = [
   },
   {
     n: '05',
-    kind: 'Mobile app',
-    badge: 'UX RESEARCH + UI',
+    kind: 'kind.app',
+    badge: 'badge.research',
     numberTone: 'magenta',
     badgeTone: 'rose',
     title: 'BOOK MOOD',
-    text: 'A social reading app with book clubs, shared deadlines and gentle motivation — from persona and competitor analysis to user flow and UI.',
+    text: 'p5.text',
     image: '/assets/project-5.png',
     alt: 'Book Mood reading app screens',
     x: 326.79,
@@ -104,7 +105,7 @@ const PROJECTS: Project[] = [
 const FOLDER_COLORS = ['#8f7ae0', '#fda009', '#e8608f', '#7a4a43', '#b520cc']
 const TILTS = [-2, 2.2, -1.6, 1.8, -2.2]
 
-const FILTERS = ['ALL · 5', 'WEB · 3', 'MOBILE · 2', 'UX RESEARCH · 1']
+const FILTERS = ['filter.all', 'filter.web', 'filter.mobile', 'filter.ux']
 
 /** until each case has its own Behance link, cards open the Behance profile */
 const BEHANCE = 'https://www.behance.net/alla-kulykova'
@@ -116,6 +117,7 @@ const PIN_SRC = {
 }
 
 export default function Projects() {
+  const { t } = useLang()
   return (
     <Stage id="projects" height={2742}>
       <div className="projects-back" aria-hidden="true" />
@@ -138,23 +140,20 @@ export default function Projects() {
 
         <p className="eyebrow">
           <span>03</span>
-          <span className="eyebrow__label">SELECTED PROJECTS</span>
+          <span className="eyebrow__label">{t('proj.eyebrow')}</span>
         </p>
 
-        <h2 className="projects-title">SELECTED PROJECTS</h2>
+        <h2 className="projects-title">{t('proj.title')}</h2>
         <span className="projects-count" aria-hidden="true">
           (5)
         </span>
 
-        <p className="projects-lead">
-          Five projects — two mobile apps and three websites. Each opens a short
-          case: concept, research or goal, key decisions and final screens.
-        </p>
+        <p className="projects-lead">{t('proj.lead')}</p>
 
         <div className="filters" aria-hidden="true">
           {FILTERS.map((f, i) => (
             <span key={f} className={`filter${i === 0 ? ' is-active' : ''}`}>
-              {f}
+              {t(f)}
             </span>
           ))}
         </div>
@@ -188,13 +187,13 @@ export default function Projects() {
               <div className="card__body">
                 <div className="card__meta">
                   <span className={`card__number tone-${p.numberTone}`}>{p.n}</span>
-                  <span className="card__kind">{p.kind}</span>
-                  <span className={`card__badge tone-${p.badgeTone}`}>{p.badge}</span>
+                  <span className="card__kind">{t(p.kind)}</span>
+                  <span className={`card__badge tone-${p.badgeTone}`}>{t(p.badge)}</span>
                 </div>
                 <h3 className="card__title">{p.title}</h3>
-                <p className="card__text">{p.text}</p>
+                <p className="card__text">{t(p.text)}</p>
                 <a className="card__link" href={p.href ?? BEHANCE} target="_blank" rel="noreferrer">
-                  View case →
+                  {t('proj.viewCase')}
                 </a>
               </div>
             </div>
@@ -202,8 +201,8 @@ export default function Projects() {
         ))}
 
         <div className="sticky-note">
-          <p className="sticky-note__label">FULL UX PROCESS</p>
-          <p className="sticky-note__text">PERSONA → COMPETITORS → USER FLOW → UI</p>
+          <p className="sticky-note__label">{t('proj.stickyLabel')}</p>
+          <p className="sticky-note__text">{t('proj.stickyText')}</p>
         </div>
         <img
           className="pin"
@@ -215,7 +214,7 @@ export default function Projects() {
         />
 
         <a className="all-projects" href={BEHANCE} target="_blank" rel="noreferrer">
-          ALL PROJECTS →
+          {t('proj.all')}
         </a>
       </div>
     </Stage>

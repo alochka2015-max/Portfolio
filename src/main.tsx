@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
+import { LangProvider } from './i18n'
 import '@fontsource/bebas-neue/400.css'
 import '@fontsource/manrope/400.css'
 import '@fontsource/manrope/500.css'
@@ -10,6 +11,8 @@ import './mobile.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <LangProvider>
+      <App />
+    </LangProvider>
   </StrictMode>,
 )

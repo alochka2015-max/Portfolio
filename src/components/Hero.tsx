@@ -1,21 +1,21 @@
 import Stage from './Stage'
+import { LANGS, Lines, useLang } from '../i18n'
 
 const TABS = [
-  { label: 'HOME', cls: 'tab--home', href: '#home' },
-  { label: 'PROJECTS', cls: 'tab--projects', href: '#projects' },
-  { label: 'ABOUT', cls: 'tab--about', href: '#intro' },
-  { label: 'CONTACT', cls: 'tab--contact', href: '#contact' },
+  { key: 'tab.home', cls: 'tab--home', href: '#home' },
+  { key: 'tab.projects', cls: 'tab--projects', href: '#projects' },
+  { key: 'tab.about', cls: 'tab--about', href: '#intro' },
+  { key: 'tab.contact', cls: 'tab--contact', href: '#contact' },
 ]
 
-const LANGS = ['EN', 'UA', 'ES']
-
 export default function Hero() {
+  const { lang, setLang, t } = useLang()
   return (
     <Stage id="home" height={1024}>
         <nav className="tabs" aria-label="Main">
-          {TABS.map((t) => (
-            <a key={t.label} className={`tab ${t.cls}`} href={t.href}>
-              <span>{t.label}</span>
+          {TABS.map((tb) => (
+            <a key={tb.key} className={`tab ${tb.cls}`} href={tb.href}>
+              <span>{t(tb.key)}</span>
             </a>
           ))}
         </nav>
@@ -27,14 +27,16 @@ export default function Hero() {
           <div className="sheet__margin" aria-hidden="true" />
 
           <ul className="lang" aria-label="Language">
-            {LANGS.map((l, i) => (
-              <li key={l} className={i === 0 ? 'is-active' : ''}>
-                {l}
+            {LANGS.map((l) => (
+              <li key={l.code} className={l.code === lang ? 'is-active' : ''}>
+                <button type="button" onClick={() => setLang(l.code)} aria-pressed={l.code === lang}>
+                  {l.label}
+                </button>
               </li>
             ))}
           </ul>
 
-          <span className="role-pill">UX/UI DESIGNER</span>
+          <span className="role-pill">{t('hero.role')}</span>
           <h1 className="name">ALLA KULYKOVA</h1>
 
           <img
@@ -46,34 +48,30 @@ export default function Hero() {
           />
 
           <div className="intro">
-            <p>
-              I design user-friendly and visually distinctive interfaces for
-              businesses and product teams — easy to use and easy to recognise.
-            </p>
+            <p>{t('hero.lead')}</p>
             <div className="buttons">
               <a className="btn btn--primary" href="mailto:alochka2015@gmail.com">
-                Email me
+                {t('hero.email')}
               </a>
               <a className="btn btn--ghost" href="#projects">
-                Projects
+                {t('hero.projects')}
               </a>
             </div>
           </div>
 
           <dl className="facts">
-            <dt>BASED IN</dt>
-            <dd>Spain</dd>
-            <dt>LANGUAGES</dt>
+            <dt>{t('hero.basedIn')}</dt>
+            <dd>{t('hero.spain')}</dd>
+            <dt>{t('hero.languages')}</dt>
             <dd>EN · UA · ES</dd>
           </dl>
 
-          <img
-            className="badge"
-            src="/assets/badge.png"
-            alt="Open to junior roles"
-            width={153}
-            height={153}
-          />
+          <div className="badge" role="img" aria-label={t('hero.badge').replace('\n', ' ')}>
+            <i aria-hidden="true" />
+            <p aria-hidden="true">
+              <Lines text={t('hero.badge')} />
+            </p>
+          </div>
         </section>
 
         <div className="spiral" aria-hidden="true">

@@ -39,7 +39,9 @@
 .m-tab--about { background: var(--rose); }
 .m-tab--contact { background: var(--ink); color: #fff; }
 .m-lang { position: absolute; left: 43px; top: 27px; display: flex; gap: 10px; font: 700 12px/1.3 var(--font-body); color: var(--text-muted); }
-.m-lang span:first-child { color: var(--ink); }
+.m-lang button { all: unset; cursor: pointer; font: inherit; color: inherit; }
+.m-lang button.is-on { color: var(--ink); }
+.m-lang button:focus-visible { outline: 2px solid var(--accent-magenta); outline-offset: 3px; border-radius: 4px; }
 .m-pill-wrap { position: absolute; left: 41.33px; top: 65px; width: 151.47px; height: 39.8px; display: flex; align-items: center; justify-content: center; transform: rotate(3deg); }
 .m-pill-tag { background: var(--accent-magenta); color: #fff; padding: 8px 16px; border-radius: 999px; font: 700 12px/1.3 var(--font-body); letter-spacing: 1.68px; white-space: nowrap; }
 .m-name { position: absolute; left: 39px; top: 111px; margin: 0; font: 400 96px/0.84 var(--font-display); letter-spacing: -1px; color: var(--ink); white-space: nowrap; }
@@ -66,7 +68,7 @@
 }
 .m-eyebrow__label { letter-spacing: 1.54px; }
 .m-h2 { position: absolute; left: 43px; top: 75px; margin: 0; font: 400 58px/0.88 var(--font-display); color: var(--ink); white-space: nowrap; }
-.m-h2 em { font-style: normal; color: var(--accent-magenta); }
+.m-h2 em, .m-accent { font-style: normal; color: var(--accent-magenta); }
 .m-text { position: absolute; left: 43px; width: 290px; margin: 0; font: 400 16px/1.55 var(--font-body); color: var(--text-body); }
 
 /* my path */
@@ -138,3 +140,9 @@
 .m-footer div { margin-top: 14px; display: flex; justify-content: space-between; font: 500 13px/1.4 var(--font-body); color: var(--text-body); }
 .m-footer p { margin: 0; }
 .m-footer div a { font-weight: 700; color: var(--ink); }
+
+/* longer words in Ukrainian / Spanish */
+html[lang='uk'] .m-contact .m-h2 { font-size: 58px !important; }
+html[lang='uk'] .m-projects__title { font-size: 64px !important; }
+html[lang='es'] .m-projects__title { font-size: 56px !important; line-height: 0.95 !important; }
+html[lang='uk'] .m-sticker span, html[lang='es'] .m-sticker span { font-size: 6.6px; letter-spacing: .6px; }

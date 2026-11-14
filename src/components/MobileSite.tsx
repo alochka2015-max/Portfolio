@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react'
 import { Postcard } from './Contact'
+import { LANGS, Lines, useLang } from '../i18n'
 
 const W = 390
 
@@ -17,10 +18,10 @@ export function useIsMobile() {
 }
 
 const TABS = [
-  { label: 'HOME', href: '#home', cls: 'm-tab--home' },
-  { label: 'PROJECTS', href: '#projects', cls: 'm-tab--projects' },
-  { label: 'ABOUT', href: '#intro', cls: 'm-tab--about' },
-  { label: 'CONTACT', href: '#contact', cls: 'm-tab--contact' },
+  { key: 'tab.home', href: '#home', cls: 'm-tab--home' },
+  { key: 'tab.projects', href: '#projects', cls: 'm-tab--projects' },
+  { key: 'tab.about', href: '#intro', cls: 'm-tab--about' },
+  { key: 'tab.contact', href: '#contact', cls: 'm-tab--contact' },
 ]
 
 type Project = {
@@ -30,22 +31,22 @@ type Project = {
   pin: 'magenta' | 'orange' | 'ink'
 }
 const PROJECTS: Project[] = [
-  { n: '01', kind: 'Mobile app', badge: 'CONCEPT', numberTone: 'magenta', badgeTone: 'magenta', title: 'NEVER LOSE YOUR RECEIPT', text: 'A mobile assistant that keeps receipts in one place, tracks return and warranty terms, and reminds you before they expire.', image: '/assets/project-1.png', alt: 'Never Lose Your Receipt app screens', pin: 'magenta' },
-  { n: '02', kind: 'Website', badge: 'STUDY PROJECT', numberTone: 'orange', badgeTone: 'orange', title: 'MATHUR GASTROBAR', text: 'A gastrobar website with expressive visual storytelling — typography, page composition and a strong visual hierarchy.', image: '/assets/project-2.png', alt: 'Mathur Gastrobar website', pin: 'orange' },
-  { n: '03', kind: 'Website', badge: 'STUDY PROJECT', numberTone: 'rose', badgeTone: 'orange', title: 'OLGA', text: 'A website built on one visual concept across every page, with a consistent UI system and adaptive layouts.', image: '/assets/project-3.png', alt: 'Olga website', pin: 'ink' },
-  { n: '04', kind: 'Website', badge: 'STUDY PROJECT', numberTone: 'ink', badgeTone: 'orange', title: 'AURUM', text: 'A premium website and brand identity for a dental implant clinic — a clear page structure and a calm, trustworthy visual system.', image: '/assets/project-4.png', alt: 'Aurum dental clinic website', pin: 'ink' },
-  { n: '05', kind: 'Mobile app', badge: 'UX RESEARCH + UI', numberTone: 'magenta', badgeTone: 'rose', title: 'BOOK MOOD', text: 'A social reading app with book clubs, shared deadlines and gentle motivation — from persona and competitor analysis to user flow and UI.', image: '/assets/project-5.png', alt: 'Book Mood reading app screens', pin: 'magenta' },
+  { n: '01', kind: 'kind.app', badge: 'badge.concept', numberTone: 'magenta', badgeTone: 'magenta', title: 'NEVER LOSE YOUR RECEIPT', text: 'p1.text', image: '/assets/project-1.png', alt: 'Never Lose Your Receipt app screens', pin: 'magenta' },
+  { n: '02', kind: 'kind.web', badge: 'badge.study', numberTone: 'orange', badgeTone: 'orange', title: 'MATHUR GASTROBAR', text: 'p2.text', image: '/assets/project-2.png', alt: 'Mathur Gastrobar website', pin: 'orange' },
+  { n: '03', kind: 'kind.web', badge: 'badge.study', numberTone: 'rose', badgeTone: 'orange', title: 'OLGA', text: 'p3.text', image: '/assets/project-3.png', alt: 'Olga website', pin: 'ink' },
+  { n: '04', kind: 'kind.web', badge: 'badge.study', numberTone: 'ink', badgeTone: 'orange', title: 'AURUM', text: 'p4.text', image: '/assets/project-4.png', alt: 'Aurum dental clinic website', pin: 'ink' },
+  { n: '05', kind: 'kind.app', badge: 'badge.research', numberTone: 'magenta', badgeTone: 'rose', title: 'BOOK MOOD', text: 'p5.text', image: '/assets/project-5.png', alt: 'Book Mood reading app screens', pin: 'magenta' },
 ]
 const BEHANCE = 'https://www.behance.net/alla-kulykova'
 const FOLDER_COLORS = ['#8f7ae0', '#fda009', '#e8608f', '#7a4a43', '#b520cc']
 const TILTS = [-2, 2.2, -1.6, 1.8, -2.2]
 const CARD_ROT = [1.2, -1, 1, -1.2, 1]
-const FILTERS = ['ALL · 5', 'WEB · 3', 'MOBILE · 2', 'UX RESEARCH · 1']
+const FILTERS = ['filter.all', 'filter.web', 'filter.mobile', 'filter.ux']
 const PIN_SRC = { magenta: '/assets/pin-magenta.png', orange: '/assets/pin-orange.png', ink: '/assets/pin.png' }
 
 const SKILLS = [
-  ['UX/UI DESIGN', 'magenta'], ['USER SCENARIOS', 'ink'], ['INTERFACE STRUCTURE', 'ink'],
-  ['VISUAL HIERARCHY', 'ink'], ['COMPOSITION', 'orange'], ['TYPOGRAPHY', 'ink'], ['ADAPTIVE DESIGN', 'ink'],
+  ['skill.1', 'magenta'], ['skill.2', 'ink'], ['skill.3', 'ink'],
+  ['skill.4', 'ink'], ['skill.5', 'orange'], ['skill.6', 'ink'], ['skill.7', 'ink'],
 ]
 
 const Check = () => (
@@ -58,7 +59,7 @@ function Back({ rot, shift = 0 }: { rot: number; shift?: number }) {
   return <div className="m-back" style={{ '--rot': `${rot}deg`, '--shift': `${shift}px` } as CSSProperties} aria-hidden="true" />
 }
 
-function Eyebrow({ n, label }: { n: string; label: string }) {
+function Eyebrow({ n, label }: { n: string; label: string }) {  // label is already translated
   return (
     <p className="m-eyebrow">
       <span>{n}</span>
@@ -68,6 +69,7 @@ function Eyebrow({ n, label }: { n: string; label: string }) {
 }
 
 export default function MobileSite() {
+  const { lang, setLang, t } = useLang()
   const inner = useRef<HTMLDivElement>(null)
   const [scale, setScale] = useState(() => window.innerWidth / W)
   const [h, setH] = useState(0)
@@ -93,27 +95,31 @@ export default function MobileSite() {
         {/* ---------- Hero ---------- */}
         <section id="home" className="m-sec m-hero">
           <nav className="m-tabs" aria-label="Sections">
-            {TABS.map((t) => (
-              <a key={t.label} href={t.href} className={`m-tab ${t.cls}`}><span>{t.label}</span></a>
+            {TABS.map((tb) => (
+              <a key={tb.key} href={tb.href} className={`m-tab ${tb.cls}`}><span>{t(tb.key)}</span></a>
             ))}
           </nav>
           <Back rot={1} />
           <div className="m-sheet" style={{ top: 64, height: 907 }}>
             <div className="m-grid" />
             <div className="m-margin" />
-            <p className="m-lang"><span>EN</span><span>UA</span><span>ES</span></p>
-            <div className="m-pill-wrap"><span className="m-pill-tag">UX/UI DESIGNER</span></div>
+            <p className="m-lang">
+              {LANGS.map((l) => (
+                <button key={l.code} type="button" className={l.code === lang ? 'is-on' : ''} aria-pressed={l.code === lang} onClick={() => setLang(l.code)}>{l.label}</button>
+              ))}
+            </p>
+            <div className="m-pill-wrap"><span className="m-pill-tag">{t('hero.role')}</span></div>
             <h1 className="m-name">ALLA<br />KULYKOVA</h1>
             <div className="m-photo"><img src="/assets/portrait.png" alt="Alla Kulykova" /></div>
-            <div className="m-badge"><i /><p>OPEN TO<br />JUNIOR ROLES</p></div>
-            <p className="m-lead">I design user-friendly and visually distinctive interfaces for businesses and product teams — easy to use and easy to recognise.</p>
+            <div className="m-badge"><i /><p><Lines text={t('hero.badge')} /></p></div>
+            <p className="m-lead">{t('hero.lead')}</p>
             <div className="m-buttons">
-              <a className="m-btn m-btn--primary" href="mailto:alochka2015@gmail.com">Email me</a>
-              <a className="m-btn m-btn--ghost" href="#projects">Projects</a>
+              <a className="m-btn m-btn--primary" href="mailto:alochka2015@gmail.com">{t('hero.email')}</a>
+              <a className="m-btn m-btn--ghost" href="#projects">{t('hero.projects')}</a>
             </div>
             <div className="m-facts">
-              <div><p>BASED IN</p><b>SPAIN</b></div>
-              <div><p>LANGUAGES</p><b>EN · UA · ES</b></div>
+              <div><p>{t('hero.basedIn')}</p><b>{t('hero.spain')}</b></div>
+              <div><p>{t('hero.languages')}</p><b>EN · UA · ES</b></div>
             </div>
           </div>
         </section>
@@ -124,28 +130,28 @@ export default function MobileSite() {
           <div className="m-sheet" style={{ top: 16, height: 892 }}>
             <div className="m-grid" />
             <div className="m-margin" />
-            <Eyebrow n="02" label="MY PATH" />
-            <h2 className="m-h2" style={{ fontSize: 58 }}>IT ALL STARTED<br />WITH A <em>NOTEBOOK</em></h2>
-            <p className="m-text" style={{ top: 195 }}>I got into design after moving to Spain. While learning Spanish, I wanted to create a workbook for myself — and designing it turned out to be the part I loved most. That’s why this portfolio is a notebook too.</p>
+            <Eyebrow n="02" label={t('path.eyebrow')} />
+            <h2 className="m-h2" style={{ fontSize: 58 }}>{t('path.l1')}<br />{t('path.l2a')}<em>{t('path.l2b')}</em></h2>
+            <p className="m-text" style={{ top: 195 }}>{t('path.text')}</p>
             <div className="m-workbook" aria-hidden="true">
               <div className="m-workbook__cover">
                 <b>CUADERNO<br />DE ESPAÑOL</b>
-                <span>VOL. 1 · MY OWN WORKBOOK</span>
+                <span>{t('path.vol')}</span>
               </div>
-              {['hola  —  hello', 'libro  —  book', 'cuaderno  —  notebook', 'diseño  —  design'].map((t, i) => (
-                <p key={t} className={i === 3 ? 'is-hot' : ''} style={{ top: 130.26 + 37.44 * i }}>{t}</p>
+              {[['hola', 'word.hello'], ['libro', 'word.book'], ['cuaderno', 'word.notebook'], ['diseño', 'word.design']].map(([es, k], i) => (
+                <p key={es} className={i === 3 ? 'is-hot' : ''} style={{ top: 130.26 + 37.44 * i }}>{`${es}  —  ${t(k)}`}</p>
               ))}
               {Array.from({ length: 8 }, (_, i) => <i key={i} className="m-workbook__line" style={{ top: 142.74 + 18.72 * i }} />)}
               {Array.from({ length: 6 }, (_, i) => <img key={i} className="m-workbook__dot" src="/assets/workbook-dot.png" alt="" style={{ top: 136.5 + 23.4 * i }} />)}
             </div>
             <div className="m-today">
               <div>
-                <p>TODAY</p>
-                <p>I design interfaces for web and mobile — from user scenarios to adaptive layouts.</p>
+                <p>{t('path.today')}</p>
+                <p>{t('path.sticky')}</p>
               </div>
             </div>
             <img className="m-today-pin" src="/assets/pin.png" alt="" />
-            <p className="m-note"><img src="/assets/note-dot.png" alt="" />All projects here are study and concept work.</p>
+            <p className="m-note"><img src="/assets/note-dot.png" alt="" />{t('path.noteM')}</p>
           </div>
         </section>
 
@@ -156,12 +162,12 @@ export default function MobileSite() {
             <div className="m-grid" />
             <div className="m-margin" />
             <div className="m-projects__head">
-              <Eyebrow n="03" label="SELECTED PROJECTS" />
-              <h2 className="m-h2 m-projects__title" style={{ fontSize: 72, lineHeight: 0.9 }}>SELECTED<br />PROJECTS</h2>
+              <Eyebrow n="03" label={t('proj.eyebrow')} />
+              <h2 className="m-h2 m-projects__title" style={{ fontSize: 72, lineHeight: 0.9 }}><Lines text={t('proj.titleM')} /></h2>
               <span className="m-count">(5)</span>
-              <p className="m-text m-projects__lead">Five projects — two mobile apps and three websites. Each opens a short case.</p>
+              <p className="m-text m-projects__lead">{t('proj.leadM')}</p>
               <div className="m-filters">
-                {FILTERS.map((f, i) => <span key={f} className={i === 0 ? 'is-on' : ''}>{f}</span>)}
+                {FILTERS.map((f, i) => <span key={f} className={i === 0 ? 'is-on' : ''}>{t(f)}</span>)}
               </div>
             </div>
             <div className="m-cards">
@@ -180,18 +186,18 @@ export default function MobileSite() {
                     <div className="card__body">
                       <div className="card__meta">
                         <span className={`card__number tone-${p.numberTone}`}>{p.n}</span>
-                        <span className="card__kind">{p.kind}</span>
-                        <span className={`card__badge tone-${p.badgeTone}`}>{p.badge}</span>
+                        <span className="card__kind">{t(p.kind)}</span>
+                        <span className={`card__badge tone-${p.badgeTone}`}>{t(p.badge)}</span>
                       </div>
                       <h3 className="card__title">{p.title}</h3>
-                      <p className="card__text">{p.text}</p>
-                      <a className="card__link" href={BEHANCE} target="_blank" rel="noreferrer">View case →</a>
+                      <p className="card__text">{t(p.text)}</p>
+                      <a className="card__link" href={BEHANCE} target="_blank" rel="noreferrer">{t('proj.viewCase')}</a>
                     </div>
                   </div>
                 </article>
               ))}
             </div>
-            <a className="m-btn m-btn--ghost m-all" href={BEHANCE} target="_blank" rel="noreferrer">ALL PROJECTS →</a>
+            <a className="m-btn m-btn--ghost m-all" href={BEHANCE} target="_blank" rel="noreferrer">{t('proj.all')}</a>
           </div>
         </section>
 
@@ -201,21 +207,21 @@ export default function MobileSite() {
           <div className="m-sheet" style={{ top: 16, height: 788 }}>
             <div className="m-grid" />
             <div className="m-margin" />
-            <Eyebrow n="04" label="SKILLS & TOOLS" />
-            <h2 className="m-h2" style={{ fontSize: 64, lineHeight: 1.2 }}>WHAT I BRING</h2>
+            <Eyebrow n="04" label={t('skills.eyebrow')} />
+            <h2 className="m-h2" style={{ fontSize: 64, lineHeight: 1.2 }}>{t('skills.title')}</h2>
             <ul className="m-checks">
-              {SKILLS.map(([label, tone]) => (
-                <li key={label}>
+              {SKILLS.map(([key, tone]) => (
+                <li key={key}>
                   <span className={`m-check tone-${tone}`}><Check /></span>
-                  <span>{label}</span>
+                  <span>{t(key)}</span>
                 </li>
               ))}
             </ul>
             <div className="m-sticker m-sticker--figma">
-              <i /><b>FIGMA</b><span>DESIGN &amp; PROTOTYPING</span>
+              <i /><b>FIGMA</b><span>{t('skills.figmaSub')}</span>
             </div>
             <div className="m-sticker m-sticker--ai">
-              <i /><b>AI TOOLS</b><span>IDEAS &amp; SPEED</span>
+              <i /><b>AI TOOLS</b><span>{t('skills.aiSub')}</span>
             </div>
           </div>
         </section>
@@ -226,17 +232,19 @@ export default function MobileSite() {
           <div className="m-sheet" style={{ top: 16, height: 881 }}>
             <div className="m-grid" />
             <div className="m-margin" />
-            <Eyebrow n="05" label="CONTACT" />
+            <Eyebrow n="05" label={t('contact.eyebrow')} />
             <h2 className="m-h2" style={{ fontSize: 72, lineHeight: 0.86 }}>
-              LET’S TALK<br />ABOUT YOUR<br /><em>PRODUCT</em><br />OR ROLE
+              {t('contact.title').split('\n').map((line, i) => (
+                <span key={i} className={i === 2 ? 'm-accent' : undefined}>{line}<br /></span>
+              ))}
             </h2>
-            <p className="m-text" style={{ top: 340 }}>Open to UX/UI roles and freelance projects. Email is the fastest way to reach me.</p>
+            <p className="m-text" style={{ top: 340 }}>{t('contact.text')}</p>
             <div className="m-postcard">
               <Postcard style={{ position: 'static', transform: 'rotate(-2deg)' }} />
             </div>
             <div className="m-cv">
-              <a className="m-btn m-btn--primary" href="/cv/Alla_Kulykova_UIUX_CV.pdf" download>Download CV · EN</a>
-              <a className="m-btn m-btn--ghost" href="/cv/Alla_Kulykova_UIUX_CV_ES.pdf" download>CV · ES</a>
+              <a className="m-btn m-btn--primary" href="/cv/Alla_Kulykova_UIUX_CV.pdf" download>{t('contact.cvEn')}</a>
+              <a className="m-btn m-btn--ghost" href="/cv/Alla_Kulykova_UIUX_CV_ES.pdf" download>{t('contact.cvEs')}</a>
             </div>
           </div>
         </section>
@@ -248,7 +256,7 @@ export default function MobileSite() {
             <a href="https://www.behance.net/alla-kulykova" target="_blank" rel="noreferrer">Behance</a>
             <a href="mailto:alochka2015@gmail.com">Email</a>
           </nav>
-          <div><p>© 2026 Alla Kulykova</p><a href="#home">Back to top ↑</a></div>
+          <div><p>© 2026 Alla Kulykova</p><a href="#home">{t('footer.top')}</a></div>
         </footer>
       </div>
     </main>

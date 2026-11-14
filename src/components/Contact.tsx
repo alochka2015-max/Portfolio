@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 import Stage from './Stage'
+import { Lines, useLang } from '../i18n'
 
 const LINKS = [
   { label: 'EMAIL', text: 'alochka2015@gmail.com', href: 'mailto:alochka2015@gmail.com', tone: 'magenta' },
@@ -8,6 +9,7 @@ const LINKS = [
 ]
 
 export function Postcard({ style }: { style?: CSSProperties }) {
+  const { t } = useLang()
   return (
     <div className="postcard" style={style}>
       <div className="postcard__stripe" aria-hidden="true">
@@ -25,13 +27,11 @@ export function Postcard({ style }: { style?: CSSProperties }) {
       </div>
       <div className="postcard__postmark" aria-hidden="true" />
       <p className="postcard__postmark-text" aria-hidden="true">
-        SPAIN
-        <br />
-        2026
+        <Lines text={t('card.postmark')} />
       </p>
 
-      <p className="postcard__to">TO: ALLA KULYKOVA</p>
-      <h3 className="postcard__hello">SAY HELLO</h3>
+      <p className="postcard__to">{t('card.to')}</p>
+      <h3 className="postcard__hello">{t('card.hello')}</h3>
 
       <ul className="postcard__links">
         {LINKS.map((l) => (
@@ -65,6 +65,7 @@ export function Postcard({ style }: { style?: CSSProperties }) {
 }
 
 export default function Contact() {
+  const { t } = useLang()
   return (
     <Stage id="contact" height={1000}>
       <div className="contact-back" aria-hidden="true" />
@@ -87,27 +88,27 @@ export default function Contact() {
 
         <p className="eyebrow">
           <span>05</span>
-          <span className="eyebrow__label">CONTACT</span>
+          <span className="eyebrow__label">{t('contact.eyebrow')}</span>
         </p>
 
         <h2 className="contact-title">
-          <span>LET’S TALK</span>
-          <span>ABOUT YOUR</span>
-          <span className="contact-title__accent">PRODUCT</span>
-          <span>OR ROLE</span>
+          {t('contact.title')
+            .split('\n')
+            .map((line, i) => (
+              <span key={i} className={i === 2 ? 'contact-title__accent' : undefined}>
+                {line}
+              </span>
+            ))}
         </h2>
 
-        <p className="contact-text">
-          Open to UX/UI roles and freelance projects. Email is the fastest way to
-          reach me.
-        </p>
+        <p className="contact-text">{t('contact.text')}</p>
 
         <div className="cv-buttons">
           <a className="cv-btn cv-btn--primary" href="/cv/Alla_Kulykova_UIUX_CV.pdf" download>
-            Download CV · EN
+            {t('contact.cvEn')}
           </a>
           <a className="cv-btn cv-btn--ghost" href="/cv/Alla_Kulykova_UIUX_CV_ES.pdf" download>
-            CV · ES
+            {t('contact.cvEs')}
           </a>
         </div>
 
@@ -122,7 +123,7 @@ export default function Contact() {
           <a href="https://www.behance.net/alla-kulykova" target="_blank" rel="noreferrer">Behance</a>
           <a href="mailto:alochka2015@gmail.com">Email</a>
         </nav>
-        <a href="#home">Back to top ↑</a>
+        <a href="#home">{t('footer.top')}</a>
       </footer>
     </Stage>
   )
