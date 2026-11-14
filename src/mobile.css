@@ -75,7 +75,7 @@
 /* my path */
 .m-path .m-back { top: 24px; bottom: 8px; }
 .m-path__sheet { padding-bottom: 36px; }
-.m-path__body { padding: 196px 22px 0 43px; display: flex; flex-direction: column; align-items: flex-start; }
+.m-path__body { position: relative; padding: 196px 22px 0 43px; display: flex; flex-direction: column; align-items: flex-start; }
 .m-path__body .m-text { position: static; width: 290px; }
 .m-cert {
   display: block; margin: 28px 0 0 4px; width: 286px; box-sizing: border-box; padding: 9px 9px 12px; background: #fff;
