@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import Stage from './Stage'
 
 const LINKS = [
@@ -5,6 +6,63 @@ const LINKS = [
   { label: 'LINKEDIN', text: 'alla-kulykova-designer', href: 'https://www.linkedin.com/in/alla-kulykova-designer/', tone: 'ink' },
   { label: 'BEHANCE', text: 'alla-kulykova', href: 'https://www.behance.net/alla-kulykova', tone: 'orange' },
 ]
+
+export function Postcard({ style }: { style?: CSSProperties }) {
+  return (
+    <div className="postcard" style={style}>
+      <div className="postcard__stripe" aria-hidden="true">
+        {Array.from({ length: 24 }, (_, i) => (
+          <span
+            key={i}
+            className={i % 2 ? 'is-orange' : 'is-magenta'}
+            style={{ left: -24.96 + 26 * i }}
+          />
+        ))}
+      </div>
+
+      <div className="postcard__stamp" aria-hidden="true">
+        <img src="/assets/portrait.png" alt="" />
+      </div>
+      <div className="postcard__postmark" aria-hidden="true" />
+      <p className="postcard__postmark-text" aria-hidden="true">
+        SPAIN
+        <br />
+        2026
+      </p>
+
+      <p className="postcard__to">TO: ALLA KULYKOVA</p>
+      <h3 className="postcard__hello">SAY HELLO</h3>
+
+      <ul className="postcard__links">
+        {LINKS.map((l) => (
+          <li key={l.label}>
+            <a
+              className="contact-link"
+              href={l.href}
+              {...(l.href.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}
+            >
+              <span className="contact-link__text">
+                <span className="contact-link__label">{l.label}</span>
+                <span className="contact-link__value">{l.text}</span>
+              </span>
+              <span className={`contact-link__arrow tone-${l.tone}`} aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path
+                    d="M6 14L14 6M7 6h7v7"
+                    stroke="#fff"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
 
 export default function Contact() {
   return (
@@ -53,58 +111,7 @@ export default function Contact() {
           </a>
         </div>
 
-        <div className="postcard">
-          <div className="postcard__stripe" aria-hidden="true">
-            {Array.from({ length: 24 }, (_, i) => (
-              <span
-                key={i}
-                className={i % 2 ? 'is-orange' : 'is-magenta'}
-                style={{ left: -24.96 + 26 * i }}
-              />
-            ))}
-          </div>
-
-          <div className="postcard__stamp" aria-hidden="true">
-            <img src="/assets/portrait.png" alt="" />
-          </div>
-          <div className="postcard__postmark" aria-hidden="true" />
-          <p className="postcard__postmark-text" aria-hidden="true">
-            SPAIN
-            <br />
-            2026
-          </p>
-
-          <p className="postcard__to">TO: ALLA KULYKOVA</p>
-          <h3 className="postcard__hello">SAY HELLO</h3>
-
-          <ul className="postcard__links">
-            {LINKS.map((l) => (
-              <li key={l.label}>
-                <a
-                  className="contact-link"
-                  href={l.href}
-                  {...(l.href.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}
-                >
-                  <span className="contact-link__text">
-                    <span className="contact-link__label">{l.label}</span>
-                    <span className="contact-link__value">{l.text}</span>
-                  </span>
-                  <span className={`contact-link__arrow tone-${l.tone}`} aria-hidden="true">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path
-                        d="M6 14L14 6M7 6h7v7"
-                        stroke="#fff"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <Postcard />
         <img className="postcard-pin" src="/assets/pin-magenta.png" alt="" width={18} height={18} />
       </div>
 
