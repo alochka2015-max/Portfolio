@@ -237,13 +237,13 @@ export default function Projects() {
           )
         })}
 
-        <div className="sticky-note" style={{ left: stickyRight ? 853.61 : 120, top: stickyRowY }}>
+        <div className="sticky-note" style={{ left: stickyRight ? 853.61 : 330, top: stickyRowY }}>
           <p className="sticky-note__label">{t('proj.stickyLabel')}</p>
           <p className="sticky-note__text">{t('proj.stickyText')}</p>
         </div>
         <img
           className="pin"
-          style={{ left: stickyRight ? 844.61 : 111, top: stickyRowY - 103.7 }}
+          style={{ left: stickyRight ? 844.61 : 321, top: stickyRowY - 103.7 }}
           src="/assets/pin.png"
           alt=""
           width={18}
