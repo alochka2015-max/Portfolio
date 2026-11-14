@@ -48,6 +48,9 @@ export default function Contact() {
           <a className="cv-btn cv-btn--primary" href="/cv/Alla_Kulykova_UIUX_CV.pdf" download>
             Download CV · EN
           </a>
+          <a className="cv-btn cv-btn--ghost" href="/cv/Alla_Kulykova_UIUX_CV_ES.pdf" download>
+            CV · ES
+          </a>
         </div>
 
         <div className="postcard">
