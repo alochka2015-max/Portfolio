@@ -87,6 +87,29 @@ const GROUPS: Group[] = [
       { agent: 2, delay: 400, targets: [t('#projects .all-projects')] },
     ],
   },
+  {
+    id: 'skills',
+    trigger: t('#skills .eyebrow'),
+    swirls: 1,
+    jobs: [
+      { agent: 1, targets: [t('#skills .eyebrow'), t('#skills .skills-title')] },
+      { agent: 0, delay: 200, targets: [t('#skills .skills-note', 0, [t('#skills .skills-pin')])] },
+      { agent: 3, delay: 300, targets: [t('#skills .skills-list')] },
+      { agent: 2, delay: 450, targets: [t('#skills .sticker--figma'), t('#skills .sticker--ai')] },
+    ],
+  },
+  {
+    id: 'contact',
+    trigger: t('#contact .eyebrow'),
+    swirls: 1,
+    jobs: [
+      { agent: 1, targets: [t('#contact .eyebrow'), t('#contact .contact-title')] },
+      { agent: 3, delay: 200, targets: [t('#contact .contact-text')] },
+      { agent: 4, delay: 350, targets: [t('#contact .cv-buttons')] },
+      { agent: 2, delay: 300, targets: [t('#contact .postcard', 0, [t('#contact .postcard-pin')])] },
+      { agent: 0, delay: 500, targets: [t('#contact .site-footer')] },
+    ],
+  },
 ]
 
 const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
