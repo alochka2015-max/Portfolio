@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react'
 import { matchesFilter } from '../filters'
+import { CERT_PDF } from './Intro'
 import { Postcard } from './Contact'
 import { LANGS, Lines, useLang } from '../i18n'
 
@@ -170,31 +171,24 @@ export default function MobileSite() {
         {/* ---------- My path ---------- */}
         <section id="intro" className="m-sec m-path">
           <Back rot={1} />
-          <div className="m-sheet" style={{ top: 16, height: 892 }}>
+          <div className="m-sheet m-sheet--flow m-path__sheet">
             <div className="m-grid" />
             <div className="m-margin" />
             <Eyebrow n="02" label={t('path.eyebrow')} />
             <h2 className="m-h2" style={{ fontSize: 58 }}>{t('path.l1')}<br />{t('path.l2a')}<em>{t('path.l2b')}</em></h2>
-            <p className="m-text" style={{ top: 195 }}>{t('path.text')}</p>
-            <div className="m-workbook" aria-hidden="true">
-              <div className="m-workbook__cover">
-                <b>CUADERNO<br />DE ESPAÑOL</b>
-                <span>{t('path.vol')}</span>
-              </div>
-              {[['hola', 'word.hello'], ['libro', 'word.book'], ['cuaderno', 'word.notebook'], ['diseño', 'word.design']].map(([es, k], i) => (
-                <p key={es} className={i === 3 ? 'is-hot' : ''} style={{ top: 130.26 + 37.44 * i }}>{`${es}  —  ${t(k)}`}</p>
-              ))}
-              {Array.from({ length: 8 }, (_, i) => <i key={i} className="m-workbook__line" style={{ top: 142.74 + 18.72 * i }} />)}
-              {Array.from({ length: 6 }, (_, i) => <img key={i} className="m-workbook__dot" src="/assets/workbook-dot.png" alt="" style={{ top: 136.5 + 23.4 * i }} />)}
+            <div className="m-path__body">
+              <p className="m-text">{t('path.text')}</p>
+              <a className="m-cert" href={CERT_PDF} target="_blank" rel="noreferrer">
+                <img src="/assets/cert.jpg" alt={t('path.certAlt')} width={440} height={311} />
+                <span>{t('path.cert')}</span>
+                <b>{t('path.certLink')}</b>
+              </a>
+              <a className="m-cert m-cert--ai" href="/assets/cert-ai.jpg" target="_blank" rel="noreferrer">
+                <img src="/assets/cert-ai.jpg" alt={t('path.cert2Alt')} width={200} height={199} />
+                <span>{t('path.cert2')}</span>
+              </a>
+              <p className="m-note"><img src="/assets/note-dot.png" alt="" />{t('path.noteM')}</p>
             </div>
-            <div className="m-today">
-              <div>
-                <p>{t('path.today')}</p>
-                <p>{t('path.sticky')}</p>
-              </div>
-            </div>
-            <img className="m-today-pin" src="/assets/pin.png" alt="" />
-            <p className="m-note"><img src="/assets/note-dot.png" alt="" />{t('path.noteM')}</p>
           </div>
         </section>
 

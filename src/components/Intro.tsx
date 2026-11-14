@@ -2,12 +2,7 @@ import Stage from './Stage'
 import PageTabs from './PageTabs'
 import { Lines, useLang } from '../i18n'
 
-const WORDS = [
-  { es: 'hola', key: 'word.hello' },
-  { es: 'libro', key: 'word.book' },
-  { es: 'cuaderno', key: 'word.notebook' },
-  { es: 'diseño', key: 'word.design', accent: true },
-]
+export const CERT_PDF = '/cert/Alla_Kulykova_GoIT_UX-UI_Design_Certificate.pdf'
 
 export default function Intro() {
   const { t } = useLang()
@@ -54,45 +49,16 @@ export default function Intro() {
           </div>
         </div>
 
-        <div className="workbook" aria-label="Cuaderno de español, vol. 1">
-          <div className="workbook__cover" />
-          <p className="workbook__title">
-            CUADERNO
-            <br />
-            DE ESPAÑOL
-          </p>
-          <p className="workbook__vol">{t('path.vol')}</p>
-          {Array.from({ length: 8 }, (_, i) => (
-            <span key={i} className="workbook__rule" style={{ top: 183 + i * 24 }} />
-          ))}
-          {WORDS.map((w, i) => (
-            <p
-              key={w.es}
-              className={`workbook__word${w.accent ? ' is-accent' : ''}`}
-              style={{ top: 167 + i * 48 }}
-            >
-              {w.es}&nbsp;&nbsp;—&nbsp;&nbsp;{t(w.key)}
-            </p>
-          ))}
-          {Array.from({ length: 6 }, (_, i) => (
-            <img
-              key={i}
-              className="workbook__dot"
-              style={{ top: 175 + i * 30 }}
-              src="/assets/workbook-dot.png"
-              alt=""
-              width={10}
-              height={10}
-            />
-          ))}
-        </div>
-
-        <div className="sticky">
-          <p className="sticky__label">{t('path.today')}</p>
-          <p className="sticky__text">{t('path.sticky')}</p>
-        </div>
-
-        <img className="pin" src="/assets/pin.png" alt="" width={18} height={18} />
+        <a className="cert" href={CERT_PDF} target="_blank" rel="noreferrer">
+          <img className="cert__img" src="/assets/cert.jpg" alt={t('path.certAlt')} width={440} height={311} />
+          <span className="cert__caption">{t('path.cert')}</span>
+          <span className="cert__link">{t('path.certLink')}</span>
+        </a>
+        <a className="cert cert--ai" href="/assets/cert-ai.jpg" target="_blank" rel="noreferrer">
+          <img className="cert__img" src="/assets/cert-ai.jpg" alt={t('path.cert2Alt')} width={230} height={229} />
+          <span className="cert__caption">{t('path.cert2')}</span>
+        </a>
+        <img className="pin cert__pin" src="/assets/pin.png" alt="" width={18} height={18} />
       </div>
     </Stage>
   )

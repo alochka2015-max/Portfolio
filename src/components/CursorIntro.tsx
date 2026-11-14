@@ -42,8 +42,8 @@ const GROUPS: Group[] = [
     swirls: 1,
     jobs: [
       { agent: 0, targets: [t('#intro .statement')] },
-      { agent: 1, delay: 150, targets: [t('#intro .eyebrow'), t('#intro .sticky', 0, [t('#intro .pin')])] },
-      { agent: 2, delay: 300, targets: [t('#intro .workbook')] },
+      { agent: 1, delay: 150, targets: [t('#intro .eyebrow')] },
+      { agent: 2, delay: 300, targets: [t('#intro .cert', 0, [t('#intro .cert__pin')])] },
       { agent: 3, delay: 450, targets: [t('#intro .intro-text > p')] },
       { agent: 4, delay: 600, targets: [t('#intro .note')] },
     ],

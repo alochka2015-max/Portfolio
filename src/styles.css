@@ -213,48 +213,20 @@ ul { list-style: none; }
 .note img { width: 10px; height: 10px; flex-shrink: 0; }
 .note p { font-weight: 700; font-size: 15px; line-height: normal; white-space: nowrap; }
 
-.workbook {
-  position: absolute; left: 925.38px; top: 295px;
-  width: 300px; height: 380px; overflow: hidden;
-  background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
+.cert {
+  position: absolute; left: 870px; top: 285px; width: 410px; display: block; text-decoration: none; color: var(--ink);
+  background: #fff; padding: 12px 12px 16px; border: 1px solid var(--line); border-radius: 10px;
   box-shadow: 0 14px 30px rgba(31, 20, 20, 0.14);
-  transform: translate(-50%, -50%) rotate(4deg);
+  transform: translate(-50%, -50%) rotate(3deg); transition: transform .25s ease, box-shadow .25s ease;
 }
-.workbook__cover {
-  position: absolute; left: -1px; top: -1px; width: 300px; height: 150px;
-  background: var(--accent-orange);
-}
-.workbook__title {
-  position: absolute; left: 39px; top: 25px;
-  font-family: var(--font-display); font-size: 52px; line-height: 0.88; white-space: nowrap;
-}
-.workbook__vol {
-  position: absolute; left: 39px; top: 121px;
-  font-weight: 700; font-size: 11px; letter-spacing: 1.32px; white-space: nowrap;
-}
-.workbook__rule {
-  position: absolute; left: 39px; width: 220px; height: 1px; background: var(--line);
-}
-.workbook__word {
-  position: absolute; left: 39px;
-  font-weight: 500; font-size: 13px; color: var(--text-body); white-space: pre;
-}
-.workbook__word.is-accent { color: var(--accent-magenta); }
-.workbook__dot { position: absolute; left: 13px; width: 10px; height: 10px; }
-
-.sticky {
-  position: absolute; left: 734.2px; top: 534.21px;
-  width: 280px; padding: 22px 24px 24px;
-  display: flex; flex-direction: column; gap: 10px;
-  background: var(--accent-magenta); color: var(--paper);
-  border-radius: 4px; box-shadow: 0 14px 30px rgba(31, 20, 20, 0.14);
-  transform: translate(-50%, -50%) rotate(3deg);
-  font-weight: 700;
-}
-.sticky__label { font-size: 12px; letter-spacing: 1.68px; line-height: normal; white-space: nowrap; }
-.sticky__text { font-size: 17px; line-height: 1.5; }
-
-.pin { position: absolute; left: 725.2px; top: 435px; width: 18px; height: 18px; }
+.cert:hover { transform: translate(-50%, -50%) rotate(1.5deg) scale(1.02); box-shadow: 0 20px 38px rgba(31, 20, 20, 0.2); }
+.cert--ai { left: 1020px; top: 548px; width: 230px; padding: 8px 8px 12px; transform: translate(-50%, -50%) rotate(-5deg); z-index: 2; }
+.cert--ai:hover { transform: translate(-50%, -50%) rotate(-3deg) scale(1.03); }
+.cert--ai .cert__caption { margin-top: 8px; font-size: 10px; letter-spacing: 1.1px; }
+.cert__img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.cert__caption { display: block; margin-top: 12px; font-weight: 700; font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; }
+.cert__link { display: block; margin-top: 4px; font-weight: 700; font-size: 13px; color: var(--accent-magenta); }
+.pin.cert__pin { left: 876px; top: 150px; }
 
 /* ---- Section 3 — Selected projects (1440×2742) ---- */
 .projects-back {
