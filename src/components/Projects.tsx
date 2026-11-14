@@ -121,7 +121,7 @@ export default function Projects() {
   const { t } = useLang()
   return (
     <Stage id="projects" height={2742}>
-      <PageTabs current="projects" tops={[140, 940, 1740]} />
+      <PageTabs current="projects" tops={[140]} />
       <div className="projects-back" aria-hidden="true" />
 
       <div className="sheet sheet--projects">
