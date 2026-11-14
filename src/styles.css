@@ -145,8 +145,6 @@ ul { list-style: none; }
 .spiral img { width: 26px; height: 64px; display: block; flex-shrink: 0; }
 
 /* Index tabs: one set per page, tucked behind its sheet */
-.tab.is-current { transform: translateX(14px); }
-.tab.is-current:hover { transform: translateX(18px); }
 .tabs {
   position: absolute; left: 1244px; top: 170px;
   display: flex; flex-direction: column; gap: 8px;
@@ -157,7 +155,11 @@ ul { list-style: none; }
   font-weight: 700; font-size: 15px; letter-spacing: 1.2px;
   color: var(--ink); transition: transform .15s ease;
 }
-.tab:hover { transform: translateX(6px); }
+/* tucked behind the sheet: only a sliver shows; the current page's tab is out, the rest slide out on hover */
+.tab { transform: translateX(-40px); }
+.tab:hover, .tab:focus-visible { transform: translateX(2px); }
+.tab.is-current { transform: translateX(12px); }
+.tab.is-current:hover { transform: translateX(16px); }
 .tab span {
   position: absolute; left: 68px; top: 50%;
   transform: translate(-50%, -50%) rotate(90deg); white-space: nowrap;
