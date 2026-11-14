@@ -3,7 +3,7 @@ import Stage from './Stage'
 const TABS = [
   { label: 'HOME', cls: 'tab--home', href: '#home' },
   { label: 'PROJECTS', cls: 'tab--projects', href: '#projects' },
-  { label: 'ABOUT', cls: 'tab--about', href: '#about' },
+  { label: 'ABOUT', cls: 'tab--about', href: '#intro' },
   { label: 'CONTACT', cls: 'tab--contact', href: '#contact' },
 ]
 
