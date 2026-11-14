@@ -1,25 +1,10 @@
 import Stage from './Stage'
 import { LANGS, Lines, useLang } from '../i18n'
 
-const TABS = [
-  { key: 'tab.home', cls: 'tab--home', href: '#home' },
-  { key: 'tab.projects', cls: 'tab--projects', href: '#projects' },
-  { key: 'tab.about', cls: 'tab--about', href: '#intro' },
-  { key: 'tab.contact', cls: 'tab--contact', href: '#contact' },
-]
-
 export default function Hero() {
   const { lang, setLang, t } = useLang()
   return (
     <Stage id="home" height={1024}>
-        <nav className="tabs" aria-label="Main">
-          {TABS.map((tb) => (
-            <a key={tb.key} className={`tab ${tb.cls}`} href={tb.href}>
-              <span>{t(tb.key)}</span>
-            </a>
-          ))}
-        </nav>
-
         <div className="sheet-back" aria-hidden="true" />
 
         <section className="sheet">

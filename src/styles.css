@@ -141,7 +141,11 @@ ul { list-style: none; }
 }
 .spiral img { width: 26px; height: 64px; display: block; flex-shrink: 0; }
 
-/* Side tabs */
+/* Side tabs: a fixed 1440px-wide layer scaled like the stages, so the tabs follow the scroll */
+.side-tabs { position: fixed; top: 0; width: 1440px; height: 0; z-index: 30; transform-origin: top left; pointer-events: none; }
+.side-tabs .tab { pointer-events: auto; }
+.tab.is-current { transform: translateX(10px); }
+.tab.is-current:hover { transform: translateX(14px); }
 .tabs {
   position: absolute; left: 1262px; top: 170px;
   display: flex; flex-direction: column; gap: 8px;
