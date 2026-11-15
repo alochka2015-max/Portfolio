@@ -47,7 +47,7 @@
 .m-name { position: absolute; left: 39px; top: 111px; margin: 0; font: 400 96px/0.84 var(--font-display); letter-spacing: -1px; color: var(--ink); white-space: nowrap; }
 .m-photo { position: absolute; left: 39px; top: 265px; width: 283px; height: 330px; background: #d8d3d2; overflow: hidden; }
 .m-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 52% 0; display: block; }
-.m-badge { position: absolute; left: 273px; top: 465px; width: 72px; height: 72px; border-radius: 50%; background: var(--accent-magenta); box-shadow: 0 0 0 3px #fff; transform: rotate(-10deg); display: grid; place-items: center; }
+.m-badge { position: absolute; left: 246px; top: 528px; width: 72px; height: 72px; border-radius: 50%; background: var(--accent-magenta); box-shadow: 0 0 0 3px #fff; transform: rotate(-10deg); display: grid; place-items: center; }
 .m-badge i { position: absolute; inset: 5px; border-radius: 50%; border: 1.2px dashed #fff; }
 .m-badge p { position: relative; margin: 0; text-align: center; font: 700 8px/1.3 var(--font-body); color: #fff; white-space: nowrap; }
 .m-flow { position: absolute; left: 43px; top: 615px; width: 290px; display: flex; flex-direction: column; align-items: flex-start; }
