@@ -47,9 +47,9 @@
 .m-name { position: absolute; left: 39px; top: 111px; margin: 0; font: 400 96px/0.84 var(--font-display); letter-spacing: -1px; color: var(--ink); white-space: nowrap; }
 .m-photo { position: absolute; left: 39px; top: 265px; width: 283px; height: 330px; background: #d8d3d2; overflow: hidden; }
 .m-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 52% 0; display: block; }
-.m-badge { position: absolute; left: 257px; top: 445.5px; width: 100px; height: 100px; border-radius: 50%; background: var(--accent-orange); transform: rotate(-10deg); display: grid; place-items: center; }
-.m-badge i { position: absolute; inset: 8px; border-radius: 50%; border: 1.2px dashed var(--ink); }
-.m-badge p { position: relative; margin: 0; text-align: center; font: 700 10px/1.3 var(--font-body); color: var(--ink); white-space: nowrap; }
+.m-badge { position: absolute; left: 257px; top: 445.5px; width: 100px; height: 100px; border-radius: 50%; background: var(--accent-magenta); box-shadow: 0 0 0 4px #fff; transform: rotate(-10deg); display: grid; place-items: center; }
+.m-badge i { position: absolute; inset: 8px; border-radius: 50%; border: 1.2px dashed #fff; }
+.m-badge p { position: relative; margin: 0; text-align: center; font: 700 10px/1.3 var(--font-body); color: #fff; white-space: nowrap; }
 .m-flow { position: absolute; left: 43px; top: 615px; width: 290px; display: flex; flex-direction: column; align-items: flex-start; }
 .m-lead { margin: 0; font: 400 16px/1.55 var(--font-body); color: var(--text-body); }
 .m-buttons { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; }
@@ -109,6 +109,10 @@
   scroll-padding-left: 24px; -webkit-overflow-scrolling: touch; scrollbar-width: none;
 }
 .m-cards::-webkit-scrollbar { display: none; }
+.m-dots { position: relative; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: -8px; }
+.m-dots i { width: 8px; height: 8px; border-radius: 999px; background: rgba(27,20,20,.2); transition: width .25s ease, background .25s ease; }
+.m-dots i.is-on { width: 26px; background: var(--ink); }
+.m-dots__hint { margin-left: 10px; font: 700 11px/1 var(--font-body); letter-spacing: .66px; text-transform: uppercase; color: var(--ink); opacity: .6; }
 .m-card { position: relative; flex: 0 0 306px; width: 306px; scroll-snap-align: start; }
 .m-card .card__media { height: 214px; width: calc(100% - 32px); margin: 0 16px; border-width: 5px; border-radius: 14px; }
 .m-card .folder__sheet--a, .m-card .folder__sheet--b { height: 220px; }

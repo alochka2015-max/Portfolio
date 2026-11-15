@@ -114,6 +114,7 @@ export default function MobileSite() {
   const [scale, setScale] = useState(() => window.innerWidth / W)
   const [h, setH] = useState(0)
   const [flt, setFlt] = useState(0)
+  const [cardIdx, setCardIdx] = useState(0)
   const cards = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -206,11 +207,11 @@ export default function MobileSite() {
               <div className="m-projects__body">
                 <p className="m-text m-projects__lead">{t('proj.leadM')}</p>
                 <div className="m-filters">
-                  {FILTERS.map((f, i) => <button key={f} type="button" aria-pressed={i === flt} className={i === flt ? 'is-on' : ''} onClick={() => { setFlt(i); cards.current?.scrollTo({ left: 0 }) }}>{t(f)}</button>)}
+                  {FILTERS.map((f, i) => <button key={f} type="button" aria-pressed={i === flt} className={i === flt ? 'is-on' : ''} onClick={() => { setFlt(i); cards.current?.scrollTo({ left: 0 }); setCardIdx(0) }}>{t(f)}</button>)}
                 </div>
               </div>
             </div>
-            <div className="m-cards" ref={cards}>
+            <div className="m-cards" ref={cards} onScroll={e => setCardIdx(Math.round(e.currentTarget.scrollLeft / 320))}>
               {PROJECTS.map((p, i) => matchesFilter(flt, p) && (
                 <article
                   key={p.n}
@@ -236,6 +237,12 @@ export default function MobileSite() {
                   </div>
                 </article>
               ))}
+            </div>
+            <div className="m-dots" aria-hidden="true">
+              {PROJECTS.filter(p => matchesFilter(flt, p)).map((p, i) => (
+                <i key={p.n} className={i === cardIdx ? 'is-on' : ''} />
+              ))}
+              <span className="m-dots__hint">{t('proj.swipe')}</span>
             </div>
             <a className="m-btn m-btn--ghost m-all" href={BEHANCE} target="_blank" rel="noreferrer">{t('proj.all')}</a>
           </div>

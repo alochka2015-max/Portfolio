@@ -110,6 +110,7 @@ const D: Record<string, [string, string, string]> = {
     'ПЕРСОНА → КОНКУРЕНТИ → ЮЗЕР-ФЛОУ → UI',
     'PERSONA → COMPETIDORES → USER FLOW → UI',
   ],
+  'proj.swipe': ['swipe →', 'гортайте →', 'desliza →'],
   'proj.all': ['ALL PROJECTS →', 'УСІ ПРОЄКТИ →', 'TODOS LOS PROYECTOS →'],
   // skills
   'skills.eyebrow': ['SKILLS & TOOLS', 'НАВИЧКИ Й ІНСТРУМЕНТИ', 'HABILIDADES Y HERRAMIENTAS'],
