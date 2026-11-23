@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
  * Agent-cursor intro: five labelled cursors swirl, fly to page elements, draw a
  * Figma-style selection frame around each one, and the element appears.
  * Hero and the "My path" section play on load; the project cards play as the
- * page is scrolled. Does nothing when the visitor prefers reduced motion.
+ * page is scrolled. Plays even with reduced-motion on: it is a short, decorative part of the design.
  */
 
 type Target = { sel: string; index?: number; also?: Target[] }
@@ -130,7 +130,6 @@ export default function CursorIntro() {
     const layer = layerRef.current
     const main = layer?.parentElement
     if (!layer || !main) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     let dead = false
     let runId = 0
